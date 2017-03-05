@@ -7,8 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/skin_colorTextInPrimaryDark"
-    app:cardCornerRadius="10px"
-    app:cardElevation="2px"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="false"
     app:contentPadding="2px">
