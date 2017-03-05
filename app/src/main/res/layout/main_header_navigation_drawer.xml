@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
-        android:text="欢迎您宝贵的建议"
+        android:text="倾听您宝贵的建议"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
