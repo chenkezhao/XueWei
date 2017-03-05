@@ -33,7 +33,7 @@ public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.My
 
 	@Override
 	public void onBindViewHolder(MyViewHolder holder, int position) {
-		holder.tv.setText(mDatas.get(position));
+//		holder.tv.setText(mDatas.get(position));
 	}
 
 	@Override
@@ -43,11 +43,11 @@ public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.My
 
 	class MyViewHolder extends RecyclerView.ViewHolder {
 
-		TextView tv;
+//		TextView tv;
 
 		public MyViewHolder(View view){
 			super(view);
-			tv = (TextView) view.findViewById(R.id.id_num);
+//			tv = (TextView) view.findViewById(R.id.id_num);
 		}
 	}
 
