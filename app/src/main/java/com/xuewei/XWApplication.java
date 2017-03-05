@@ -33,6 +33,8 @@ public class XWApplication extends Application {
         x.Ext.init(this);
 //		x.Ext.setDebug(BuildConfig.DEBUG); // 是否输出debug日志, 开启debug会影响性能.
         SkinManager.getInstance().init(this);
+        AppErrorHandler crashHandler = AppErrorHandler.getInstance();
+        crashHandler.init(getApplicationContext());
     }
 
     /**

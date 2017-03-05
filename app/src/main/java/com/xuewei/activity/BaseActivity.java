@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import com.umeng.analytics.MobclickAgent;
@@ -24,40 +23,14 @@ import org.xutils.x;
 public class BaseActivity extends BaseSkinActivity {
 
     final private int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 689;
-    private ActionBar mActionBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
-        mActionBar = getSupportActionBar();
-        if(mActionBar!=null){
-            mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setDisplayShowHomeEnabled(false);
-        }
         //启动时检查权限
         if(android.os.Build.VERSION.SDK_INT>=23){
             checkPermission();
-        }
-    }
-
-    public void setTitle(String title){
-        if(mActionBar!=null){
-            mActionBar.setTitle(title);
-        }
-    }
-
-    public void setSubtitle(String subTitle){
-        if(mActionBar!=null){
-            mActionBar.setSubtitle(subTitle);
-        }
-    }
-
-    public void setMainHomeUp(){
-        if(mActionBar!=null){
-            mActionBar.setHomeButtonEnabled(false);
-            mActionBar.setDisplayHomeAsUpEnabled(false);
-            mActionBar.setDisplayShowHomeEnabled(true);
         }
     }
 

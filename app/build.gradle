@@ -25,11 +25,11 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:design:25.2.0'
     compile 'com.zhy:autolayout:1.4.5'
-    compile 'com.android.support:design:25.1.0'
-    compile 'org.xutils:xutils:3.3.40'
+    compile 'org.xutils:xutils:3.3.42'
     /*Android换肤框架 https://github.com/hongyangAndroid/ChangeSkin*/
     compile 'com.zhy:changeskin:3.0.0'
     /*友盟应用统计*/

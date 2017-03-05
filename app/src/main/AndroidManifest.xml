@@ -22,6 +22,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="design_width"
+            android:value="1080"></meta-data>
+        <meta-data
+            android:name="design_height"
+            android:value="1920"></meta-data>
+
+
+        <meta-data android:value="58a3cbcbf5ade451d20017aa" android:name="UMENG_APPKEY"/>
+        <meta-data android:value="text1" android:name="UMENG_CHANNEL"/>
+
+
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
