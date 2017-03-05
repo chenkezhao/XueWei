@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/skin_colorPrimaryDefault</item>
         <item name="colorPrimaryDark">@color/skin_colorPrimaryDark</item>
         <item name="colorAccent">@color/skin_colorAccent</item>
-        <item name="android:textColorPrimary">@color/skin_colorTextInPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/skin_colorTextPrimary</item>
         <item name="android:textColorSecondary">@color/skin_colorTextSecondary</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
