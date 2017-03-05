@@ -10,6 +10,18 @@
         <item name="android:textColorSecondary">@color/skin_colorTextSecondary</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+        <!--设置波纹颜色-->
+        <item name="android:colorControlHighlight">@color/skin_colorPrimaryLight</item>
+        <!--设置checkbox等控件的选中颜色
+        <item name="android:colorAccent">#0a6e14</item>-->
+
+        <!--
+        波纹设置
+        组件中的属性
+        android:background="?android:attr/selectableItemBackground"波纹有边界
+        android:background="?android:attr/selectableItemBackgroundBorderless"波纹超出边界
+        -->
     </style>
 
     <style name="AppTheme" parent="BaseAppTheme"></style>
