@@ -4,20 +4,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:icon="@drawable/ic_menu_setting"
+            android:title="设置" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="个人中心">
         <menu>
+            <item
+                android:id="@+id/nav_collection"
+                android:icon="@drawable/ic_menu_collection"
+                android:title="收藏" />
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="分享" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:icon="@drawable/ic_menu_about"
+                android:title="关于" />
         </menu>
     </item>
 
