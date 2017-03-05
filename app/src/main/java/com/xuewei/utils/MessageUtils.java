@@ -7,8 +7,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
-import com.jbp689.JBPApplication;
-
 /**
  *
  * Created by Administrator on 2017/1/7.
