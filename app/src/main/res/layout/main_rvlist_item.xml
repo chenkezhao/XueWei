@@ -44,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="标题"
+            android:textColor="@color/skin_colorTextPrimary"
             android:textSize="24sp"
             android:layout_marginTop="24dp"
             android:layout_marginLeft="16dp"
