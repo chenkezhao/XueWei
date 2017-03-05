@@ -37,7 +37,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private NavigationView mNavigationView;
 
     @ViewInject(R.id.ctl_toolbar)
-    private CollapsingToolbarLayout ctlToobar;
+    private CollapsingToolbarLayout ctlToolbar;
     @ViewInject(R.id.rv_list)
     private RecyclerView mRecyclerView;
     @ViewInject(R.id.appBarLayout)
@@ -68,9 +68,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         });
 
         //设置标题
-        ctlToobar.setTitle("陈科肇");
-        ctlToobar.setExpandedTitleColor(getResources().getColor(R.color.skin_colorAccent));//设置还没收缩时状态下字体颜色
-        ctlToobar.setCollapsedTitleTextColor(getResources().getColor(R.color.skin_colorTextInPrimaryDark));//设置收缩后Toolbar上字体的颜色
+        ctlToolbar.setTitle("陈科肇");
+        ctlToolbar.setExpandedTitleColor(Color.WHITE);//设置还没收缩时状态下字体颜色
+        ctlToolbar.setCollapsedTitleTextColor(Color.GREEN);//设置收缩后Toolbar上字体的颜色
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -110,11 +110,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         switch (item.getItemId()){
-            case R.id.nav_manage:
+            case R.id.nav_setting:
+                break;
+            case R.id.nav_collection:
                 break;
             case R.id.nav_share:
                 break;
-            case R.id.nav_send:
+            case R.id.nav_about:
                 break;
             default:
                 break;
