@@ -7,12 +7,12 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.umeng.analytics.MobclickAgent;
 import com.xuewei.XWApplication;
 import com.xuewei.utils.MessageUtils;
+import com.zhy.changeskin.base.BaseSkinActivity;
 
 import org.xutils.x;
 
@@ -21,7 +21,7 @@ import org.xutils.x;
  * Created by Administrator on 2017/1/8.
  */
 
-public class BaseActivity extends AppCompatActivity{
+public class BaseActivity extends BaseSkinActivity {
 
     final private int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 689;
     private ActionBar mActionBar;

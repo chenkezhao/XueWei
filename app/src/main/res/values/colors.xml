@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--默认主调背景色-->
-    <color name="colorPrimaryDefault">#F44336</color>
+    <color name="skin_colorPrimaryDefault">#F44336</color>
     <!--深暗主调背景色-->
-    <color name="colorPrimaryDark">#D32F2F</color>
+    <color name="skin_colorPrimaryDark">#D32F2F</color>
     <!--深暗主调背景色下的字体颜色-->
-    <color name="colorTextInPrimaryDark">#FFFFFF</color>
+    <color name="skin_colorTextInPrimaryDark">#FFFFFF</color>
     <!--高亮主调背景色-->
-    <color name="colorPrimaryLight">#FFCDD2</color>
+    <color name="skin_colorPrimaryLight">#FFCDD2</color>
     <!--强调色-->
-    <color name="colorAccent">#FFC107</color>
+    <color name="skin_colorAccent">#FFC107</color>
     <!--主级字体颜色-->
-    <color name="colorTextPrimary">#212121</color>
+    <color name="skin_colorTextPrimary">#212121</color>
     <!--次级字体颜色-->
-    <color name="colorTextSecondary">#757575</color>
+    <color name="skin_colorTextSecondary">#757575</color>
     <!--分隔线颜色-->
-    <color name="colorDivider">#BDBDBD</color>
+    <color name="skin_colorDivider">#BDBDBD</color>
 </resources>

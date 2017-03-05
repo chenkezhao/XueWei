@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import com.zhy.changeskin.SkinManager;
+
 import org.xutils.x;
 
 import java.io.File;
@@ -30,6 +32,7 @@ public class XWApplication extends Application {
         this.instance = XWApplication.this;
         x.Ext.init(this);
 //		x.Ext.setDebug(BuildConfig.DEBUG); // 是否输出debug日志, 开启debug会影响性能.
+        SkinManager.getInstance().init(this);
     }
 
     /**

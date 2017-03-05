@@ -30,6 +30,8 @@ dependencies {
     compile 'com.zhy:autolayout:1.4.5'
     compile 'com.android.support:design:25.1.0'
     compile 'org.xutils:xutils:3.3.40'
+    /*Android换肤框架 https://github.com/hongyangAndroid/ChangeSkin*/
+    compile 'com.zhy:changeskin:3.0.0'
     /*友盟应用统计*/
     compile 'com.umeng.analytics:analytics:latest.integration'
 }
