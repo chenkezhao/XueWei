@@ -87,6 +87,7 @@
                 android:layout_marginRight="8dp"
                 android:text="收藏"/>
             <Button
+                android:id="@+id/btn_showDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/FlatButtonStyle"
