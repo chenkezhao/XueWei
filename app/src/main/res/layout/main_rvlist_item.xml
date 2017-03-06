@@ -80,9 +80,13 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:orientation="horizontal">
-            <Button
+            <ImageButton
+                android:id="@+id/ib_collection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_menu_collection"
+                android:clickable="true"
+                android:focusable="true"
                 style="@style/FlatButtonStyle"
                 android:layout_marginRight="8dp"
                 android:text="收藏"/>
