@@ -1,6 +1,7 @@
 package com.xuewei.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -13,6 +14,8 @@ import org.xutils.view.annotation.ViewInject;
 @ContentView(R.layout.activity_xwdetail_picture)
 public class XWDetailPictureActivity extends BaseActivity {
 
+	@ViewInject(R.id.toolbar)
+	private Toolbar toolbar;
 	@ViewInject(R.id.zoomableView)
 	private ZoomableDraweeView	zoomableDraweeView;
 	private boolean				mAllowSwipingWhileZoomed	= true;
@@ -20,6 +23,11 @@ public class XWDetailPictureActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setSupportActionBar(toolbar);
+		if(getSupportActionBar()!=null){
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+			getSupportActionBar().setTitle("高清图解");
+		}
 		initView();
 	}
 
