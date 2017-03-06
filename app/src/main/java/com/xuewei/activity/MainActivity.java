@@ -1,6 +1,5 @@
 package com.xuewei.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -15,7 +14,6 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.xuewei.R;
 import com.xuewei.adapter.MainRVListAdapter;
@@ -72,8 +70,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         });
 
         //设置标题
-        ctlToolbar.setTitle("陈科肇");
-        ctlToolbar.setTitleEnabled(false);
+        ctlToolbar.setTitle("高清图解.穴位");
+        ctlToolbar.setTitleEnabled(true);
         ctlToolbar.setExpandedTitleColor(getResources().getColor(R.color.skin_colorAccent));//设置还没收缩时状态下字体颜色
         ctlToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.skin_colorTextInPrimaryDark));//设置收缩后Toolbar上字体的颜色
 

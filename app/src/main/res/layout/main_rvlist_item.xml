@@ -44,7 +44,7 @@
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/sdv_preview_img"
             android:layout_width="match_parent"
-            android:layout_height="270px"
+            android:layout_height="450px"
             android:clickable="true"
             android:gravity="center"
             android:scaleType="centerCrop"
