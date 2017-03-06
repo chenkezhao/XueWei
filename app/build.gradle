@@ -35,4 +35,5 @@ dependencies {
     compile 'com.zhy:changeskin:3.0.0'
     /*友盟应用统计*/
     compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.facebook.fresco:fresco:1.1.0'
 }

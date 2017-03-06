@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.xuewei.widgets.AutoCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:background="?android:attr/selectableItemBackground"
     android:layout_margin="16px"
@@ -36,10 +37,18 @@
         android:text="圆角+阴影"
         android:textSize="30sp" />-->
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_preview_img"
+            android:layout_width="match_parent"
+            android:layout_height="270px"
+            android:clickable="true"
+            android:gravity="center"
+            android:scaleType="centerCrop"
+            fresco:actualImageScaleType="centerCrop"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,5 +92,5 @@
                 style="@style/FlatButtonStyle"
                 android:text="查看详情"/>
         </com.zhy.autolayout.AutoLinearLayout>
-    </LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 </com.xuewei.widgets.AutoCardView>

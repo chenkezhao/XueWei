@@ -47,6 +47,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(mToolbar);
+		if (getSupportActionBar() != null) {
+			// Enable the Up button，返回按钮
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		}
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, navDrawer, mToolbar, R.string.drawer_open, R.string.drawer_close);
         navDrawer.addDrawerListener(toggle);
         toggle.syncState();

@@ -59,3 +59,6 @@
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
+
+###--------------android.support.v7.widget.SearchView-----------
+-keep class android.support.v7.widget.SearchView { *; }

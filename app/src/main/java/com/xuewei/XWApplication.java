@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.zhy.changeskin.SkinManager;
 
 import org.xutils.x;
@@ -35,6 +36,7 @@ public class XWApplication extends Application {
         SkinManager.getInstance().init(this);
         AppErrorHandler crashHandler = AppErrorHandler.getInstance();
         crashHandler.init(getApplicationContext());
+        Fresco.initialize(this);
     }
 
     /**
