@@ -2,8 +2,12 @@ package com.xuewei.entity;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import org.xutils.DbManager;
 import org.xutils.db.annotation.Column;
 import org.xutils.db.annotation.Table;
+import org.xutils.ex.DbException;
+
+import java.util.List;
 
 /**
  * 穴位组
@@ -30,6 +34,10 @@ public class GroupXueWei extends BaseEntity {
 	@XStreamAlias("URL")
 	@Column(name = "url")
 	private String	url;
+
+	public List<XueWeiEffect> getXueWeiEffectList(DbManager db) throws DbException {
+		return db.selector(XueWeiEffect.class).where("groupid", "=", this.id).findAll();
+	}
 
 	public GroupXueWei(int seq, String title, String subTitle, String content, Boolean collection, String url){
 		this.seq = seq;
