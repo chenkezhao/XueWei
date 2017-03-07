@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GROUPROOT>
+    <GROUPXUEWEILIST>
+        <GROUPXUEWEI>
+            <SEQ>1</SEQ>
+            <TITLE>人体正面穴位超大图</TITLE>
+            <SUBTITLE>真人版女性针灸全身穴位</SUBTITLE>
+            <CONTENT>任脉——主治神经系统、呼吸系统、消化系统、泌尿生殖系统病症，以及寒性病和本经所经过之部位的病症。</CONTENT>
+            <COLLECTION>false</COLLECTION>
+            <URL>1.png</URL>
+        </GROUPXUEWEI>
+        <GROUPXUEWEI>
+            <SEQ>2</SEQ>
+            <TITLE>人体背面穴位超大图</TITLE>
+            <SUBTITLE>真人版女性针灸全身穴位</SUBTITLE>
+            <CONTENT></CONTENT>
+            <COLLECTION></COLLECTION>
+            <URL></URL>
+        </GROUPXUEWEI>
+        <GROUPXUEWEI>
+            <SEQ>3</SEQ>
+            <TITLE></TITLE>
+            <SUBTITLE></SUBTITLE>
+            <CONTENT></CONTENT>
+            <COLLECTION></COLLECTION>
+            <URL></URL>
+        </GROUPXUEWEI>
+    </GROUPXUEWEILIST>
+</GROUPROOT>
