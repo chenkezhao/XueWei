@@ -6,7 +6,6 @@ import android.support.v7.widget.Toolbar;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.xuewei.R;
-import com.xuewei.facebook.zoomable.DefaultZoomableController;
 import com.xuewei.facebook.zoomable.DoubleTapGestureListener;
 import com.xuewei.facebook.zoomable.ZoomableDraweeView;
 
