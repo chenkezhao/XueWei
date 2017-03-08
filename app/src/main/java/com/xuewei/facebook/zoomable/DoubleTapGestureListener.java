@@ -29,15 +29,15 @@ public class DoubleTapGestureListener extends GestureDetector.SimpleOnGestureLis
   private final PointF mDoubleTapImagePoint = new PointF();
   private float mDoubleTapScale = 1;
   private boolean mDoubleTapScroll = false;
+  private AbstractAnimatedZoomableController zc;
 
   public DoubleTapGestureListener(ZoomableDraweeView zoomableDraweeView) {
     mDraweeView = zoomableDraweeView;
+    zc = (AbstractAnimatedZoomableController) mDraweeView.getZoomableController();
   }
 
   @Override
   public boolean onDoubleTapEvent(MotionEvent e) {
-    AbstractAnimatedZoomableController zc =
-        (AbstractAnimatedZoomableController) mDraweeView.getZoomableController();
     PointF vp = new PointF(e.getX(), e.getY());
     PointF ip = zc.mapViewToImage(vp);
     switch (e.getActionMasked()) {
@@ -95,5 +95,28 @@ public class DoubleTapGestureListener extends GestureDetector.SimpleOnGestureLis
     float dy = (currentViewPoint.y - mDoubleTapViewPoint.y);
     float t = 1 + Math.abs(dy) * 0.001f;
     return (dy < 0) ? mDoubleTapScale / t : mDoubleTapScale * t;
+  }
+
+  /**
+   * Sets the maximum scale factor allowed.
+   * <p>
+   * Hierarchy's scaling (if any) is not taken into account.
+   */
+  public void setMaxScaleFactor(float maxScaleFactor) {
+    if(zc!=null){
+      zc.setMaxScaleFactor(maxScaleFactor);
+    }
+  }
+
+
+  /**
+   * Sets the minimum scale factor allowed.
+   * <p>
+   * Hierarchy's scaling (if any) is not taken into account.
+   */
+  public void setMinScaleFactor(float minScaleFactor) {
+    if(zc!=null){
+      zc.setMinScaleFactor(minScaleFactor);
+    }
   }
 }

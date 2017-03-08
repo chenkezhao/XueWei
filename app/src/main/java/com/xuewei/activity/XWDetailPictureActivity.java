@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.xuewei.R;
+import com.xuewei.facebook.zoomable.DefaultZoomableController;
 import com.xuewei.facebook.zoomable.DoubleTapGestureListener;
 import com.xuewei.facebook.zoomable.ZoomableDraweeView;
 
@@ -35,8 +36,13 @@ public class XWDetailPictureActivity extends BaseActivity {
 		zoomableDraweeView.setAllowTouchInterceptionWhileZoomed(mAllowSwipingWhileZoomed);
 		// needed for double tap to zoom
 		zoomableDraweeView.setIsLongpressEnabled(false);
-		zoomableDraweeView.setTapListener(new DoubleTapGestureListener(zoomableDraweeView));
-		DraweeController controller = Fresco.newDraweeControllerBuilder().setUri("res:///" + R.mipmap.test).build();
+		DoubleTapGestureListener doubleTapGestureListener = new DoubleTapGestureListener(zoomableDraweeView);
+		doubleTapGestureListener.setMinScaleFactor(1.0f);
+		doubleTapGestureListener.setMaxScaleFactor(7f);
+		zoomableDraweeView.setTapListener(doubleTapGestureListener);
+
+
+		DraweeController controller = Fresco.newDraweeControllerBuilder().setUri("res:///" + R.mipmap.p1).build();
 		zoomableDraweeView.setController(controller);
 	}
 
