@@ -41,7 +41,7 @@ public class XWDetailPictureActivity extends BaseActivity {
 		zoomableDraweeView.setTapListener(doubleTapGestureListener);
 
 
-		DraweeController controller = Fresco.newDraweeControllerBuilder().setUri("res:///" + R.mipmap.p1).build();
+		DraweeController controller = Fresco.newDraweeControllerBuilder().setUri("res:///" + R.mipmap.p3).build();
 		zoomableDraweeView.setController(controller);
 	}
 
