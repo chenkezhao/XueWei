@@ -122,6 +122,19 @@ public class GroupXueWeiDao extends BaseDao{
     }
 
     /**
+     * 获取表数据行
+     * @return
+     */
+    public Long getAllCount(){
+        try {
+            return db.selector(GroupXueWei.class).count();
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+        return 0l;
+    }
+
+    /**
      * 根据id查询
      * @param id
      */

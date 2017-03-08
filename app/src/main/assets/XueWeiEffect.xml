@@ -127,10 +127,13 @@
             <URL></URL>
             <GROUPID></GROUPID>
         </XUEWEIEFFECT>
-
-
-
-
+        <XUEWEIEFFECT>
+            <SEQ></SEQ>
+            <XUEWEI></XUEWEI>
+            <EFFECT>组分界处</EFFECT>
+            <URL></URL>
+            <GROUPID>-1</GROUPID>
+        </XUEWEIEFFECT>
         <XUEWEIEFFECT>
             <SEQ></SEQ>
             <XUEWEI>筋缩.中枢.肝俞.胆俞.魂 门.阳纲穴</XUEWEI>

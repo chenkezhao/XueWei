@@ -17,6 +17,14 @@ import android.view.MenuItem;
 
 import com.xuewei.R;
 import com.xuewei.adapter.MainRVListAdapter;
+import com.xuewei.db.dao.GroupXueWeiDao;
+import com.xuewei.db.dao.XueWeiEffectDao;
+import com.xuewei.entity.GroupXueWei;
+import com.xuewei.entity.GroupXueWeiList;
+import com.xuewei.entity.XueWeiEffect;
+import com.xuewei.entity.XueWeiEffectList;
+import com.xuewei.utils.MessageUtils;
+import com.xuewei.utils.XmlReadUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -33,13 +41,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private Toolbar mToolbar;
     @ViewInject(R.id.nav_view)
     private NavigationView mNavigationView;
-
     @ViewInject(R.id.ctl_toolbar)
     private CollapsingToolbarLayout ctlToolbar;
     @ViewInject(R.id.rv_list)
     private RecyclerView mRecyclerView;
     @ViewInject(R.id.appBarLayout)
     private AppBarLayout mAppBarLayout;
+
+    private GroupXueWeiDao groupXueWeiDao;
+    private XueWeiEffectDao xueWeiEffectDao;
+    private List<GroupXueWei> mGroupXueWeiList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +64,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         navDrawer.addDrawerListener(toggle);
         toggle.syncState();
         mNavigationView.setNavigationItemSelectedListener(this);
+        initData();
         initView();
     }
 
@@ -79,16 +91,39 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
-        mRecyclerView.setAdapter(new MainRVListAdapter(this,initData()));
+        mRecyclerView.setAdapter(new MainRVListAdapter(this,mGroupXueWeiList));
 
     }
 
-    protected List<String> initData() {
-        List<String> mDatas = new ArrayList<String>();
-        for (int i = 'A'; i < 'z'; i++) {
-            mDatas.add("" + (char) i);
+    private void initData(){
+        groupXueWeiDao = GroupXueWeiDao.getInstance();
+        xueWeiEffectDao = XueWeiEffectDao.getInstance();
+        if(groupXueWeiDao.getAllCount()==0 || xueWeiEffectDao.getAllCount()==0){
+            MessageUtils.getInstance().showProgressDialog(MainActivity.this,"首次启动", "数据初始化中...");
+            groupXueWeiDao.clearTable();
+            xueWeiEffectDao.clearTable();
+            List<GroupXueWei> groupXueWeiList = XmlReadUtils.getInstance().fromXMLByGroup().getGroupXueWeiList();
+            List<XueWeiEffect> xueWeiEffectList = XmlReadUtils.getInstance().fromXMLByEffect().getXueWeiEffectList();
+            int size = xueWeiEffectList.size();
+            int groupid = 1;
+            for(int i=0;i<size;i++){
+                XueWeiEffect e = xueWeiEffectList.get(i);
+                e.setSeq(i+1);
+                if(e.getGroupid()==-1){
+                    groupid = 2;
+                    continue;
+                }
+                e.setGroupid(groupid);
+            }
+            groupXueWeiDao.insert(groupXueWeiList);
+            xueWeiEffectDao.insert(xueWeiEffectList);
+            MessageUtils.getInstance().closeProgressDialog();
         }
-        return mDatas;
+        if(mGroupXueWeiList==null){
+            mGroupXueWeiList = new ArrayList<GroupXueWei>();
+        }
+        mGroupXueWeiList.addAll(groupXueWeiDao.getAll());
+
     }
 
     @Override

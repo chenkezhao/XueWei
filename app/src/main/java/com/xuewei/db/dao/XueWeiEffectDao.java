@@ -121,6 +121,20 @@ public class XueWeiEffectDao extends BaseDao{
         return null;
     }
 
+
+    /**
+     * 获取表数据行
+     * @return
+     */
+    public Long getAllCount(){
+        try {
+            return db.selector(XueWeiEffect.class).count();
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+        return 0l;
+    }
+
     /**
      * 根据id查询
      * @param id

@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.xuewei.R;
 import com.xuewei.activity.XWDetailPictureActivity;
+import com.xuewei.entity.GroupXueWei;
 
 import java.util.List;
 
@@ -25,11 +26,11 @@ import java.util.List;
 
 public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.MyViewHolder> {
 	private Context			mContext;
-	private List<String>	mDatas;
+	private List<GroupXueWei> mGroupXueWeiList;
 
-	public MainRVListAdapter(Context mContext, List<String> datas){
+	public MainRVListAdapter(Context mContext, List<GroupXueWei> datas){
 		this.mContext = mContext;
-		this.mDatas = datas;
+		this.mGroupXueWeiList = datas;
 	}
 
 	@Override
@@ -40,7 +41,7 @@ public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.My
 
 	@Override
 	public void onBindViewHolder(MyViewHolder holder, int position) {
-		Uri uri = Uri.parse("res:///"+R.mipmap.test);
+		Uri uri = Uri.parse("res://R.mipmap."+mGroupXueWeiList.get(position).getUrl());
 		holder.previewImg.setImageURI(uri);
 
 		holder.showDetail.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +54,7 @@ public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.My
 
 	@Override
 	public int getItemCount() {
-		return mDatas.size();
+		return mGroupXueWeiList.size();
 	}
 
 	class MyViewHolder extends RecyclerView.ViewHolder {

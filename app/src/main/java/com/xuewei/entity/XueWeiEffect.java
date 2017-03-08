@@ -31,9 +31,9 @@ public class XueWeiEffect extends BaseEntity {
 
 	@XStreamAlias("GROUPID")// 外键表id
 	@Column(name = "groupid")
-	private String	groupid;
+	private int	groupid;
 
-	public XueWeiEffect(int seq, String xueWei, String effect, String url, String groupid){
+	public XueWeiEffect(int seq, String xueWei, String effect, String url, int groupid){
 		this.seq = seq;
 		this.xueWei = xueWei;
 		this.effect = effect;
@@ -73,11 +73,11 @@ public class XueWeiEffect extends BaseEntity {
 		this.url = url;
 	}
 
-	public String getGroupid() {
+	public int getGroupid() {
 		return groupid;
 	}
 
-	public void setGroupid(String groupid) {
+	public void setGroupid(int groupid) {
 		this.groupid = groupid;
 	}
 }
