@@ -33,6 +33,9 @@ public class XueWeiEffect extends BaseEntity {
 	@Column(name = "groupid")
 	private int	groupid;
 
+	public XueWeiEffect() {
+	}
+
 	public XueWeiEffect(int seq, String xueWei, String effect, String url, int groupid){
 		this.seq = seq;
 		this.xueWei = xueWei;

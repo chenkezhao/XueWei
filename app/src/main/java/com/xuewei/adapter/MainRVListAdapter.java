@@ -1,5 +1,6 @@
 package com.xuewei.adapter;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuffColorFilter;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.xuewei.R;
@@ -41,15 +43,22 @@ public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.My
 
 	@Override
 	public void onBindViewHolder(MyViewHolder holder, int position) {
-		Uri uri = Uri.parse("res://R.mipmap."+mGroupXueWeiList.get(position).getUrl());
-		holder.previewImg.setImageURI(uri);
-
+		GroupXueWei groupXueWei = mGroupXueWeiList.get(position);
 		holder.showDetail.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				mContext.startActivity(new Intent(mContext, XWDetailPictureActivity.class));
 			}
 		});
+		String imgName  = groupXueWei.getUrl();
+		imgName = imgName.substring(0,imgName.lastIndexOf("."));
+		int resId = mContext.getResources().getIdentifier(imgName, "mipmap" , mContext.getPackageName());
+		Uri uri = Uri.parse("res:///"+resId);
+		holder.previewImg.setImageURI(uri);
+		holder.title.setText(groupXueWei.getTitle());
+		holder.subTitle.setText(groupXueWei.getSubTitle());
+		holder.content.setText(groupXueWei.getContent());
+
 	}
 
 	@Override
@@ -62,12 +71,18 @@ public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.My
 		SimpleDraweeView previewImg;
 		Button showDetail;
 		ImageButton collectionIcon;
+		TextView title;
+		TextView subTitle;
+		TextView content;
 
 		public MyViewHolder(View view){
 			super(view);
 			previewImg = (SimpleDraweeView) view.findViewById(R.id.sdv_preview_img);
 			showDetail = (Button) view.findViewById(R.id.btn_showDetail);
 			collectionIcon  = (ImageButton) view.findViewById(R.id.ib_collection);
+			title = (TextView)view.findViewById(R.id.titleTV);
+			subTitle = (TextView)view.findViewById(R.id.subTitleTV);
+			content = (TextView)view.findViewById(R.id.contentTV);
 		}
 	}
 

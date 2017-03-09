@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import com.xuewei.R;
 import com.xuewei.adapter.MainRVListAdapter;
+import com.xuewei.db.MyDatabase;
 import com.xuewei.db.dao.GroupXueWeiDao;
 import com.xuewei.db.dao.XueWeiEffectDao;
 import com.xuewei.entity.GroupXueWei;
@@ -161,5 +162,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
         navDrawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyDatabase.getInstance().closeDatabase();
     }
 }

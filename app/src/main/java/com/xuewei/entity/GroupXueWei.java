@@ -39,6 +39,9 @@ public class GroupXueWei extends BaseEntity {
 		return db.selector(XueWeiEffect.class).where("groupid", "=", this.id).findAll();
 	}
 
+	public GroupXueWei() {
+	}
+
 	public GroupXueWei(int seq, String title, String subTitle, String content, Boolean collection, String url){
 		this.seq = seq;
 		this.title = title;

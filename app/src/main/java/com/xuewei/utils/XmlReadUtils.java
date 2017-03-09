@@ -4,7 +4,9 @@ import android.content.res.AssetManager;
 
 import com.thoughtworks.xstream.XStream;
 import com.xuewei.XWApplication;
+import com.xuewei.entity.GroupXueWei;
 import com.xuewei.entity.GroupXueWeiList;
+import com.xuewei.entity.XueWeiEffect;
 import com.xuewei.entity.XueWeiEffectList;
 
 import java.io.IOException;
@@ -37,6 +39,8 @@ public class XmlReadUtils {
             AssetManager assetManager = XWApplication.getInstance().getAssets();
             InputStream ims = assetManager.open("GroupXueWei.xml");
             XStream xstream = new XStream();
+            xstream.processAnnotations(GroupXueWeiList.class);
+            xstream.processAnnotations(GroupXueWei.class);
             groupXueWeiList = (GroupXueWeiList) xstream.fromXML(ims);
             return  groupXueWeiList;
         } catch (IOException e) {
@@ -55,6 +59,8 @@ public class XmlReadUtils {
             AssetManager assetManager = XWApplication.getInstance().getAssets();
             InputStream ims = assetManager.open("XueWeiEffect.xml");
             XStream xstream = new XStream();
+            xstream.processAnnotations(XueWeiEffectList.class);
+            xstream.processAnnotations(XueWeiEffect.class);
             xueWeiEffectList = (XueWeiEffectList) xstream.fromXML(ims);
             return  xueWeiEffectList;
         } catch (IOException e) {

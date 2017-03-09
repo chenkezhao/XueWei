@@ -50,6 +50,7 @@
             android:scaleType="centerCrop"
             fresco:actualImageScaleType="centerCrop"/>
         <TextView
+            android:id="@+id/titleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="标题"
@@ -59,6 +60,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"/>
         <TextView
+            android:id="@+id/subTitleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="子标题"
@@ -67,6 +69,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"/>
         <TextView
+            android:id="@+id/contentTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
