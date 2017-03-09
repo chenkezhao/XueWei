@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +18,14 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.xuewei.R;
 import com.xuewei.activity.XWDetailPictureActivity;
+import com.xuewei.db.MyDatabase;
 import com.xuewei.entity.GroupXueWei;
+import com.xuewei.entity.XueWeiEffect;
 
+import org.xutils.ex.DbException;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,12 +49,19 @@ public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.My
 	}
 
 	@Override
-	public void onBindViewHolder(MyViewHolder holder, int position) {
+	public void onBindViewHolder(MyViewHolder holder, final int position) {
 		GroupXueWei groupXueWei = mGroupXueWeiList.get(position);
 		holder.showDetail.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mContext.startActivity(new Intent(mContext, XWDetailPictureActivity.class));
+				Intent intent =new Intent(mContext, XWDetailPictureActivity.class);
+				try {
+					List<XueWeiEffect> list = mGroupXueWeiList.get(position).getXueWeiEffectList(MyDatabase.getInstance().getDb());
+					intent.putExtra(XueWeiEffect.XUEWEIEFFECT, (Serializable) list);
+					mContext.startActivity(intent);
+				} catch (DbException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		String imgName  = groupXueWei.getUrl();

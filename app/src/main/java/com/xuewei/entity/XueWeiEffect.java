@@ -13,6 +13,8 @@ import org.xutils.db.annotation.Table;
 @Table(name = "XueWeiEffect")
 public class XueWeiEffect extends BaseEntity {
 
+	public static final String  XUEWEIEFFECT = "XUEWEIEFFECT";
+
 	@XStreamAlias("SEQ")
 	@Column(name = "seq")
 	private int		seq;
