@@ -16,6 +16,10 @@ import java.util.List;
 @XStreamAlias("GROUPXUEWEI")
 @Table(name = "GroupXueWei")
 public class GroupXueWei extends BaseEntity {
+
+
+	public static final String  GROUPXUEWEI = "GROUPXUEWEI";
+
 	@XStreamAlias("SEQ")
 	@Column(name = "seq")
 	private int		seq;

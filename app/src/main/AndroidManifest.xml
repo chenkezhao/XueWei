@@ -40,7 +40,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.XWDetailPictureActivity"></activity>
+        <activity android:name=".activity.XWEffectActivity" />
+        <activity android:name=".activity.HDMapActivity"></activity>
     </application>
 
 </manifest>
