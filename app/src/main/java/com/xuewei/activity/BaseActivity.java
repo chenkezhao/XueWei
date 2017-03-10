@@ -34,6 +34,18 @@ public class BaseActivity extends AppCompatActivity/*BaseSkinActivity*/ {
         }
     }
 
+    public void setTitle(String title){
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(title);
+        }
+    }
+    public void setSubTitle(String subTitle){
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setTitle(subTitle);
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

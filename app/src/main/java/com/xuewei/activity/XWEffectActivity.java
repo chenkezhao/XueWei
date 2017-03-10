@@ -32,10 +32,7 @@ public class XWEffectActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setSupportActionBar(toolbar);
-		if(getSupportActionBar()!=null){
-			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-			getSupportActionBar().setTitle("穴位作用|效果");
-		}
+		setTitle("穴位作用|效果");
 		if (savedInstanceState == null) {
 			GroupXueWei group  = (GroupXueWei) getIntent().getSerializableExtra(GroupXueWei.GROUPXUEWEI);
 			try {

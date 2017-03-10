@@ -14,7 +14,7 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 @ContentView(R.layout.activity_hdmap)
-public class HDMapActivity extends AppCompatActivity {
+public class HDMapActivity extends BaseActivity {
 
     @ViewInject(R.id.toolbar)
     private Toolbar toolbar;
@@ -26,10 +26,7 @@ public class HDMapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(toolbar);
-        if(getSupportActionBar()!=null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("高清图解");
-        }
+        setTitle("高清图解");
         initView();
     }
 

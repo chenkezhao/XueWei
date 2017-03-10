@@ -13,13 +13,13 @@ import java.io.Serializable;
 public class BaseEntity implements Serializable {
 	@XStreamOmitField
 	@Column(name = "id", isId = true)
-	public String id;
+	public int id;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 }
