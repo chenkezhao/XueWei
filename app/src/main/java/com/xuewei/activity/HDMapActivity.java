@@ -1,12 +1,13 @@
 package com.xuewei.activity;
 
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.xuewei.R;
+import com.xuewei.entity.GroupXueWei;
 import com.xuewei.facebook.zoomable.DoubleTapGestureListener;
 import com.xuewei.facebook.zoomable.ZoomableDraweeView;
 
@@ -21,10 +22,14 @@ public class HDMapActivity extends BaseActivity {
     @ViewInject(R.id.zoomableView)
     private ZoomableDraweeView zoomableDraweeView;
     private boolean				mAllowSwipingWhileZoomed	= true;
+    private GroupXueWei group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState == null) {
+            group  = (GroupXueWei) getIntent().getSerializableExtra(GroupXueWei.GROUPXUEWEI);
+        }
         setSupportActionBar(toolbar);
         setTitle("高清图解");
         initView();
@@ -38,9 +43,11 @@ public class HDMapActivity extends BaseActivity {
         doubleTapGestureListener.setMinScaleFactor(1.0f);
         doubleTapGestureListener.setMaxScaleFactor(7f);
         zoomableDraweeView.setTapListener(doubleTapGestureListener);
-
-
-        DraweeController controller = Fresco.newDraweeControllerBuilder().setUri("res:///" + R.mipmap.p3).build();
+        String imgName  = group.getUrl();
+        imgName = imgName.substring(0,imgName.lastIndexOf("."));
+        int resId = getResources().getIdentifier(imgName, "mipmap" , getPackageName());
+        Uri uri = Uri.parse("res:///"+resId);
+        DraweeController controller = Fresco.newDraweeControllerBuilder().setUri(uri).build();
         zoomableDraweeView.setController(controller);
     }
 
