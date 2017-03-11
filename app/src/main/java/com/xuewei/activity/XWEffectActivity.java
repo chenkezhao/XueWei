@@ -23,7 +23,7 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
-@ContentView(R.layout.activity_xwdetail_picture)
+@ContentView(R.layout.activity_xweffect)
 public class XWEffectActivity extends BaseActivity {
 
 	@ViewInject(R.id.toolbar)

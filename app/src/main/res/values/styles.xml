@@ -31,7 +31,7 @@
 
     <!--平面按钮样式-->
     <style name="FlatButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
-        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
 </resources>

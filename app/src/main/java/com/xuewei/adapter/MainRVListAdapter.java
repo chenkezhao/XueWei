@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.xuewei.db.MyDatabase;
 import com.xuewei.entity.GroupXueWei;
 import com.xuewei.entity.XueWeiEffect;
 
+import org.w3c.dom.Text;
 import org.xutils.ex.DbException;
 
 import java.io.Serializable;
@@ -61,8 +63,16 @@ public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.My
 		Uri uri = Uri.parse("res:///"+resId);
 		holder.previewImg.setImageURI(uri);
 		holder.title.setText(groupXueWei.getTitle());
-		holder.subTitle.setText(groupXueWei.getSubTitle());
-		holder.content.setText(groupXueWei.getContent());
+		String subTitle = groupXueWei.getSubTitle();
+		if(TextUtils.isEmpty(subTitle)){
+			holder.subTitle.setVisibility(View.GONE);
+		}else{
+			holder.subTitle.setText(subTitle);
+		}
+		String content = groupXueWei.getContent();
+		if(!TextUtils.isEmpty(content)){
+			holder.content.setText(content.replace("\\n","\n").replace("\\t","\t"));
+		}
 
 	}
 

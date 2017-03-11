@@ -48,12 +48,15 @@
             android:clickable="true"
             android:gravity="center"
             android:scaleType="centerCrop"
-            fresco:actualImageScaleType="centerCrop"/>
+            fresco:actualImageScaleType="centerCrop"
+            fresco:failureImage="@drawable/ic_not_img"
+            fresco:failureImageScaleType="centerInside"
+            fresco:placeholderImage="@drawable/ic_loading"
+            fresco:placeholderImageScaleType="fitCenter"/>
         <TextView
             android:id="@+id/titleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="标题"
             android:textColor="@color/colorTextPrimary"
             android:textSize="24sp"
             android:layout_marginTop="24dp"
@@ -63,7 +66,6 @@
             android:id="@+id/subTitleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="子标题"
             android:textSize="14sp"
             android:layout_marginTop="12dp"
             android:layout_marginLeft="16dp"
@@ -77,7 +79,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/text"/>
+            android:textColor="@color/colorTextPrimary"/>
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

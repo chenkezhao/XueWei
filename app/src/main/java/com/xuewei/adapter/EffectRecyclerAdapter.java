@@ -2,6 +2,7 @@ package com.xuewei.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,10 @@ public class EffectRecyclerAdapter  extends RecyclerView.Adapter<EffectRecyclerA
     public void onBindViewHolder(MyiewAdapter holder, int position) {
         XueWeiEffect e = xueWeiEffectList.get(position);
         holder.title.setText(e.getXueWei());
-        holder.content.setText(e.getEffect());
+        String content =e.getEffect();
+        if(!TextUtils.isEmpty(content)){
+            holder.content.setText(content.replace("\\n","\n").replace("\\t","\t"));
+        }
     }
 
     @Override
