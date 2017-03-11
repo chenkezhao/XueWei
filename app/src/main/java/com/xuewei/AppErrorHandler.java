@@ -16,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.util.Log;
+import android.widget.Toast;
 
 
 /**
@@ -92,8 +93,9 @@ public class AppErrorHandler implements UncaughtExceptionHandler {
 					deviceinfo.append(key + "=" + value + "\n");
 				}
 				Log.e(TAG,errorMessage);
-				android.os.Process.killProcess(android.os.Process.myPid());
-				System.exit(1);
+				Toast.makeText(XWApplication.getInstance(),errorMessage,Toast.LENGTH_LONG).show();
+//				android.os.Process.killProcess(android.os.Process.myPid());
+//				System.exit(1);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

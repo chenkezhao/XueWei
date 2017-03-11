@@ -30,7 +30,7 @@ public class BaseActivity extends AppCompatActivity/*BaseSkinActivity*/ {
         x.view().inject(this);
         //启动时检查权限
         if(android.os.Build.VERSION.SDK_INT>=23){
-            checkPermission();
+//            checkPermission();
         }
     }
 
