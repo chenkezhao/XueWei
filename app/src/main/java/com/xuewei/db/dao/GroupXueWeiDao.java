@@ -155,9 +155,23 @@ public class GroupXueWeiDao extends BaseDao{
      * @param value         查询value
      * @return
      */
-    public List<GroupXueWei> getBy(String columnName, String value){
+    public List<GroupXueWei> getBy(String columnName, Object value){
         try {
             return db.selector(GroupXueWei.class).where(columnName, "=", value).findAll();
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    /**
+     * 根据指定列查询（等值查询）
+     * @param columnName    列名（全大写）
+     * @param value         查询value
+     * @return
+     */
+    public List<GroupXueWei> getLikeBy(String columnName, String value){
+        try {
+            return db.selector(GroupXueWei.class).where(columnName, "like", "%"+value+"%").findAll();
         } catch (DbException e) {
             e.printStackTrace();
         }

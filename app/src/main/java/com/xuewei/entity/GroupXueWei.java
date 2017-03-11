@@ -27,13 +27,13 @@ public class GroupXueWei extends BaseEntity {
 	@Column(name = "title")
 	private String	title;
 	@XStreamAlias("SUBTITLE")
-	@Column(name = "subTitl")
+	@Column(name = "subTitle")
 	private String	subTitle;
 	@XStreamAlias("CONTENT")
-	@Column(name = "conten")
+	@Column(name = "content")
 	private String	content;
 	@XStreamAlias("COLLECTION")
-	@Column(name = "collectio")
+	@Column(name = "collection")
 	private Boolean	collection;
 	@XStreamAlias("URL")
 	@Column(name = "url")

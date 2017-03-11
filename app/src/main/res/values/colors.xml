@@ -16,4 +16,9 @@
     <color name="colorTextSecondary">#757575</color>
     <!--分隔线颜色-->
     <color name="colorDivider">#BDBDBD</color>
+
+
+
+    <color name="collection">#F44336</color>
+    <color name="unCollection">#cecece</color>
 </resources>

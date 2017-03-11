@@ -90,7 +90,7 @@
                 android:id="@+id/ib_collection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_collection"
+                android:src="@drawable/ic_collection"
                 android:clickable="true"
                 android:focusable="true"
                 style="@style/FlatButtonStyle"

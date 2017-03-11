@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -50,6 +51,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private GroupXueWeiDao groupXueWeiDao;
     private XueWeiEffectDao xueWeiEffectDao;
     private List<GroupXueWei> mGroupXueWeiList;
+    private MainRVListAdapter mainRVListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +92,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
-        mRecyclerView.setAdapter(new MainRVListAdapter(this,mGroupXueWeiList));
-
+        mainRVListAdapter =new MainRVListAdapter(this,mGroupXueWeiList);
+        mRecyclerView.setAdapter(mainRVListAdapter);
     }
 
     private void initData(){
@@ -130,6 +132,24 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         getMenuInflater().inflate(R.menu.main_menu,menu);
         SupportMenuItem searchItem = (SupportMenuItem)menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setQueryHint("搜索主治功效");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(TextUtils.isEmpty(newText)){
+                    newText = "";
+                }
+                mGroupXueWeiList.clear();
+                mGroupXueWeiList.addAll(groupXueWeiDao.getLikeBy("content",newText));
+                mainRVListAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -147,9 +167,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         switch (item.getItemId()){
-            case R.id.nav_setting:
+            case R.id.nav_home:
+                mGroupXueWeiList.clear();
+                mGroupXueWeiList.addAll(groupXueWeiDao.getAll());
+                mainRVListAdapter.notifyDataSetChanged();
                 break;
             case R.id.nav_collection:
+                mGroupXueWeiList.clear();
+                mGroupXueWeiList.addAll(groupXueWeiDao.getBy("collection",true));
+                mainRVListAdapter.notifyDataSetChanged();
                 break;
             case R.id.nav_share:
                 break;

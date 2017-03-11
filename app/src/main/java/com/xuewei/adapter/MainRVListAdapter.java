@@ -2,7 +2,9 @@ package com.xuewei.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -10,19 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.xuewei.R;
 import com.xuewei.activity.XWEffectActivity;
-import com.xuewei.db.MyDatabase;
+import com.xuewei.db.dao.GroupXueWeiDao;
 import com.xuewei.entity.GroupXueWei;
-import com.xuewei.entity.XueWeiEffect;
+import com.xuewei.utils.SVGUtils;
 
-import org.w3c.dom.Text;
-import org.xutils.ex.DbException;
-
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -33,10 +32,13 @@ import java.util.List;
 public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.MyViewHolder> {
 	private Context			mContext;
 	private List<GroupXueWei> mGroupXueWeiList;
+	private GroupXueWei groupXueWei;
+	private GroupXueWeiDao groupXueWeiDao;
 
 	public MainRVListAdapter(Context mContext, List<GroupXueWei> datas){
 		this.mContext = mContext;
 		this.mGroupXueWeiList = datas;
+		groupXueWeiDao = GroupXueWeiDao.getInstance();
 	}
 
 	@Override
@@ -47,7 +49,24 @@ public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.My
 
 	@Override
 	public void onBindViewHolder(MyViewHolder holder, final int position) {
-		GroupXueWei groupXueWei = mGroupXueWeiList.get(position);
+		groupXueWei = mGroupXueWeiList.get(position);
+		if(groupXueWei.getCollection()){
+			SVGUtils.getInstance().changeSVGColor(holder.collectionIcon,R.drawable.ic_collection,R.color.collection);
+		}else{
+			SVGUtils.getInstance().changeSVGColor(holder.collectionIcon,R.drawable.ic_collection,R.color.unCollection);
+		}
+		holder.collectionIcon.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				groupXueWei.setCollection(!groupXueWei.getCollection());
+				groupXueWeiDao.update(groupXueWei);
+				if(groupXueWei.getCollection()){
+					SVGUtils.getInstance().changeSVGColor((ImageView) v,R.drawable.ic_collection,R.color.collection);
+				}else{
+					SVGUtils.getInstance().changeSVGColor((ImageView) v,R.drawable.ic_collection,R.color.unCollection);
+				}
+			}
+		});
 		holder.showDetail.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
