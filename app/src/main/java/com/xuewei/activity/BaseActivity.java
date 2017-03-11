@@ -30,7 +30,7 @@ public class BaseActivity extends AppCompatActivity/*BaseSkinActivity*/ {
         x.view().inject(this);
         //启动时检查权限
         if(android.os.Build.VERSION.SDK_INT>=23){
-//            checkPermission();
+            checkPermission();
         }
     }
 
@@ -63,7 +63,7 @@ public class BaseActivity extends AppCompatActivity/*BaseSkinActivity*/ {
         int hasWriteContactsPermission = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
             if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                MessageUtils.getInstance().showAlertDialog(this, "系统提示", "如果不赋予程序任何权限，程序将结束运行！", new DialogInterface.OnClickListener() {
+                MessageUtils.getInstance().showAlertDialog(this, "系统提示", "受权将用于初始化相关数据！", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
@@ -90,7 +90,7 @@ public class BaseActivity extends AppCompatActivity/*BaseSkinActivity*/ {
                 } else {
                     // Permission Denied
                     MessageUtils.getInstance().closeProgressDialog();
-                    XWApplication.getInstance().exit();
+//                    XWApplication.getInstance().exit();
                 }
                 break;
             default:
