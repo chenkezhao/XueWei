@@ -91,6 +91,10 @@ public class MainRVListAdapter extends RecyclerView.Adapter<MainRVListAdapter.My
 		String content = groupXueWei.getContent();
 		if(!TextUtils.isEmpty(content)){
 			holder.content.setText(content.replace("\\n","\n").replace("\\t","\t"));
+			holder.content.setVisibility(View.VISIBLE);
+		}else{
+			holder.content.setText("");
+			holder.content.setVisibility(View.GONE);
 		}
 
 	}
