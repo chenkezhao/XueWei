@@ -27,7 +27,6 @@ dependencies {
     /*Android换肤框架 https://github.com/hongyangAndroid/ChangeSkin*/
     /*友盟应用统计*/
     //    compile 'com.lapism:searchview:4.0'
-    //    compile 'com.zhy:changeskin:3.0.0'
     compile('com.thoughtworks.xstream:xstream:1.4.7') {
         exclude group: 'xmlpull'
     }
@@ -42,4 +41,7 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     testCompile 'junit:junit:4.12'
     provided 'com.google.code.findbugs:jsr305:3.0.1'
+//    compile 'skin.support:skin-support:1.2.1'          // skin-support 基础控件支持
+//    compile 'skin.support:skin-support-design:1.2.1'   // skin-support-design material design 控件支持[可选]
+//    compile 'skin.support:skin-support-cardview:1.2.0' // skin-support-cardview CardView 控件支持[可选]
 }

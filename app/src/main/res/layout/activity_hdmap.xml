@@ -26,6 +26,6 @@ android:background="#000000">
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:actualImageScaleType="fitCenter"
-    app:failureImage="@color/skin_colorAccent" />
+    app:failureImage="@color/colorAccent" />
 </FrameLayout>
 

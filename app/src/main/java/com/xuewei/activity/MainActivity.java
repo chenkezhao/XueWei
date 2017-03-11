@@ -21,9 +21,7 @@ import com.xuewei.db.MyDatabase;
 import com.xuewei.db.dao.GroupXueWeiDao;
 import com.xuewei.db.dao.XueWeiEffectDao;
 import com.xuewei.entity.GroupXueWei;
-import com.xuewei.entity.GroupXueWeiList;
 import com.xuewei.entity.XueWeiEffect;
-import com.xuewei.entity.XueWeiEffectList;
 import com.xuewei.utils.MessageUtils;
 import com.xuewei.utils.XmlReadUtils;
 
@@ -85,8 +83,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         //设置标题
         ctlToolbar.setTitle("高清图解.穴位");
         ctlToolbar.setTitleEnabled(true);
-        ctlToolbar.setExpandedTitleColor(getResources().getColor(R.color.skin_colorAccent));//设置还没收缩时状态下字体颜色
-        ctlToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.skin_colorTextInPrimaryDark));//设置收缩后Toolbar上字体的颜色
+        ctlToolbar.setExpandedTitleColor(getResources().getColor(R.color.colorAccent));//设置还没收缩时状态下字体颜色
+        ctlToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.colorTextInPrimaryDark));//设置收缩后Toolbar上字体的颜色
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

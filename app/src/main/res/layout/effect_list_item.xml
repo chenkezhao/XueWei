@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="16px"
     android:background="?android:attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/skin_colorTextInPrimaryDark"
+    app:cardBackgroundColor="@color/colorTextInPrimaryDark"
     app:cardCornerRadius="2dp"
     app:cardElevation="2dp"
     app:cardPreventCornerOverlap="true"
@@ -27,7 +27,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginTop="24dp"
             android:text="标题"
-            android:textColor="@color/skin_colorTextPrimary"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="24sp" />
 
         <TextView
