@@ -12,9 +12,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xuewei.R;
 import com.xuewei.adapter.MainRVListAdapter;
@@ -47,6 +51,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private RecyclerView mRecyclerView;
     @ViewInject(R.id.appBarLayout)
     private AppBarLayout mAppBarLayout;
+    @ViewInject(R.id.tv_about)
+    private TextView about;
 
     private GroupXueWeiDao groupXueWeiDao;
     private XueWeiEffectDao xueWeiEffectDao;
@@ -70,6 +76,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void initView(){
+        about.setText(Html.fromHtml("<div style=\"padding: 24px;color: #FFFFFF\">\n" +
+                "Copyright © &nbsp;2017&nbsp;陈科肇 All rights reserved.<br>\n" +
+                "联系方式：<font class=\"email\">310771881@qq.com</font>\n" +
+                "</div>"));
         //初始化appBarLayout
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
@@ -178,8 +188,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 mainRVListAdapter.notifyDataSetChanged();
                 break;
             case R.id.nav_share:
+                MessageUtils.getInstance().showAlertDialog(MainActivity.this,"溫馨提示","你可以通过QQ分享该应用，步骤：QQ好友-聊天页面-文件-应用!");
                 break;
             case R.id.nav_about:
+                Toast.makeText(MainActivity.this,"关于",Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
