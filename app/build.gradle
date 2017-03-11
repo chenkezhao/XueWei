@@ -17,6 +17,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        release {
+            storeFile file("/app/xw.jks")
+            storePassword "536182947@xw@"
+            keyAlias "陈科肇"
+            keyPassword "536182947@xw@"
+            v2SigningEnabled false
+        }
+    }
 }
 
 dependencies {

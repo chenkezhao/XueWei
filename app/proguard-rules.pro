@@ -59,3 +59,10 @@
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
+
+###--------------XStream 混淆配置-----------
+-dontwarn com.thoughtworks.xstream.**
+-keep class com.thoughtworks.xstream.** {*; }
+-keep interface com.thoughtworks.xstream.** {*; }
+
+-dontwarn org.xmlpull.v1.**
