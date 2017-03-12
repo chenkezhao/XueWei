@@ -90,3 +90,13 @@
 
 ###--------------SearchView 混淆配置-----------
 -keep class android.support.v7.widget.SearchView { *; }
+
+
+###--------------有米广告混淆配置-----------
+#-dontwarn net.youmi.android.**
+#-keep class net.youmi.android.** {
+#    *;
+#}
+-keep public class android.support.**{
+    *;
+}

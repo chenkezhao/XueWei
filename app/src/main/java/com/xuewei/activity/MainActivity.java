@@ -30,6 +30,10 @@ import com.xuewei.entity.XueWeiEffect;
 import com.xuewei.utils.MessageUtils;
 import com.xuewei.utils.XmlReadUtils;
 
+import net.youmi.android.normal.banner.BannerManager;
+import net.youmi.android.normal.spot.SpotManager;
+import net.youmi.android.normal.video.VideoAdManager;
+
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
@@ -73,7 +77,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mNavigationView.setNavigationItemSelectedListener(this);
         initData();
         initView();
+
+        //广告
+        // 预加载数据
+        preloadData();
+        //checkAdSettings();
     }
+
 
     private void initView(){
         about.setText(Html.fromHtml("<div style=\"padding: 24px;color: #FFFFFF\">\n" +
@@ -204,5 +214,64 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onDestroy() {
         super.onDestroy();
         MyDatabase.getInstance().closeDatabase();
+
+
+        // 展示广告条窗口的 onDestroy() 回调方法中调用
+        BannerManager.getInstance(mContext).onDestroy();
+        // 退出应用时调用，用于释放资源
+        // 如果无法保证应用主界面的 onDestroy() 方法被执行到，请移动以下接口到应用的退出逻辑里面调用
+        // 插屏广告（包括普通插屏广告、轮播插屏广告、原生插屏广告）
+        SpotManager.getInstance(mContext).onAppExit();
+        // 视频广告（包括普通视频广告、原生视频广告）
+        VideoAdManager.getInstance(mContext).onAppExit();
+
+        // 原生视频广告
+        VideoAdManager.getInstance(mContext).onDestroy();
+    }
+
+
+
+    //-----------------------必须调用以下全部生命周期方法-------------------------------
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // 原生视频广告
+        VideoAdManager.getInstance(mContext).onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 原生视频广告
+        VideoAdManager.getInstance(mContext).onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // 原生视频广告
+        VideoAdManager.getInstance(mContext).onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // 原生视频广告
+        VideoAdManager.getInstance(mContext).onStop();
+    }
+
+
+    //-----------------------必须调用以上全部生命周期方法-------------------------------
+
+
+    /**
+     * 预加载数据
+     */
+    private void preloadData() {
+        // 设置服务器回调 userId，一定要在请求广告之前设置，否则无效
+        VideoAdManager.getInstance(mContext).setUserId("xuewei689");
+        // 请求视频广告
+        VideoAdManager.getInstance(mContext).requestVideoAd(mContext);
     }
 }

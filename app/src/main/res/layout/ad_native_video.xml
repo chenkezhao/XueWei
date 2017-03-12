@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.xuewei.widgets.AutoCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_native_video_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16px"
+    android:background="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/colorTextInPrimaryDark"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="false"
+    app:contentPadding="2px">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/rl_native_video_ad"
+                android:layout_width="match_parent"
+                android:background="#000"
+                android:layout_height="200dp" />
+            <TextView
+                android:id="@+id/tv_adVideo_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:text="Loading..."/>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_video_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true">
+
+            <include layout="@layout/layout_video_info" />
+        </RelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.xuewei.widgets.AutoCardView>

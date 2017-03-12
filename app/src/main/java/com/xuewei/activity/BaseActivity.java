@@ -2,16 +2,21 @@ package com.xuewei.activity;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
 import com.xuewei.XWApplication;
 import com.xuewei.utils.MessageUtils;
+
+import net.youmi.android.normal.video.VideoAdManager;
 
 import org.xutils.x;
 
@@ -23,14 +28,17 @@ import org.xutils.x;
 public class BaseActivity extends AppCompatActivity/*BaseSkinActivity*/ {
 
     final private int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 689;
+    protected static final String TAG = "xuewei";
+    protected Context mContext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         x.view().inject(this);
         //启动时检查权限
         if(android.os.Build.VERSION.SDK_INT>=23){
-            checkPermission();
+            //checkPermission();
         }
     }
 
@@ -115,4 +123,13 @@ public class BaseActivity extends AppCompatActivity/*BaseSkinActivity*/ {
     private String getName(){
         return getClass().getSimpleName();
     }
+
+    /**
+     * 检查广告配置
+     */
+    public void checkAdSettings() {
+        boolean result = VideoAdManager.getInstance(mContext).checkVideoAdConfig();
+        MessageUtils.getInstance().showShortToast("配置 %s", result ? "正确" : "不正确，请对照文档检查是否存在遗漏");
+    }
+
 }

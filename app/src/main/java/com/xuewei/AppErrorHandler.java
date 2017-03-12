@@ -18,6 +18,9 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
+import net.youmi.android.normal.spot.SpotManager;
+import net.youmi.android.normal.video.VideoAdManager;
+
 
 /**
  *
@@ -93,9 +96,16 @@ public class AppErrorHandler implements UncaughtExceptionHandler {
 					deviceinfo.append(key + "=" + value + "\n");
 				}
 				Log.e(TAG,errorMessage);
-				Toast.makeText(XWApplication.getInstance(),errorMessage,Toast.LENGTH_LONG).show();
-//				android.os.Process.killProcess(android.os.Process.myPid());
-//				System.exit(1);
+
+
+				// 退出应用时调用，用于释放资源
+				// 如果无法保证应用主界面的 onDestroy() 方法被执行到，请移动以下接口到应用的退出逻辑里面调用
+				// 插屏广告（包括普通插屏广告、轮播插屏广告、原生插屏广告）
+				SpotManager.getInstance(mContext).onAppExit();
+				// 视频广告（包括普通视频广告、原生视频广告）
+				VideoAdManager.getInstance(mContext).onAppExit();
+				android.os.Process.killProcess(android.os.Process.myPid());
+				System.exit(1);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

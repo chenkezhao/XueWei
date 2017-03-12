@@ -5,7 +5,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
+import com.xuewei.XWApplication;
+
+import net.youmi.android.normal.video.VideoAdManager;
 
 /**
  *
@@ -14,6 +20,7 @@ import android.view.View;
 
 public class MessageUtils {
 
+    private static final String TAG = MessageUtils.class.getName();
     private ProgressDialog progressDialog;
     public static MessageUtils messageUtils;
     private MessageUtils(){
@@ -88,4 +95,95 @@ public class MessageUtils {
         AlertDialog dialog  =getAlertDialogBuilder(ctx).setTitle(title).setMessage(msg)
                 .setPositiveButton("确定", onClickListener).show();
     }
+
+
+
+
+
+
+    /**
+     * 打印调试级别日志
+     *
+     * @param format
+     * @param args
+     */
+    public void logDebug(String format, Object... args) {
+        logMessage(Log.DEBUG, format, args);
+    }
+
+    /**
+     * 打印信息级别日志
+     *
+     * @param format
+     * @param args
+     */
+    public void logInfo(String format, Object... args) {
+        logMessage(Log.INFO, format, args);
+    }
+
+    /**
+     * 打印错误级别日志
+     *
+     * @param format
+     * @param args
+     */
+    public void logError(String format, Object... args) {
+        logMessage(Log.ERROR, format, args);
+    }
+
+    /**
+     * 展示短时Toast
+     *
+     * @param format
+     * @param args
+     */
+    public void showShortToast(String format, Object... args) {
+        showToast(Toast.LENGTH_SHORT, format, args);
+    }
+
+    /**
+     * 展示长时Toast
+     *
+     * @param format
+     * @param args
+     */
+    public void showLongToast(String format, Object... args) {
+        showToast(Toast.LENGTH_LONG, format, args);
+    }
+
+    /**
+     * 打印日志
+     *
+     * @param level
+     * @param format
+     * @param args
+     */
+    private void logMessage(int level, String format, Object... args) {
+        String formattedString = String.format(format, args);
+        switch (level) {
+            case Log.DEBUG:
+                Log.d(TAG, formattedString);
+                break;
+            case Log.INFO:
+                Log.i(TAG, formattedString);
+                break;
+            case Log.ERROR:
+                Log.e(TAG, formattedString);
+                break;
+        }
+    }
+
+    /**
+     * 展示Toast
+     *
+     * @param duration
+     * @param format
+     * @param args
+     */
+    private void showToast(int duration, String format, Object... args) {
+        Toast.makeText(XWApplication.getInstance(), String.format(format, args), duration).show();
+    }
+
+
+
 }

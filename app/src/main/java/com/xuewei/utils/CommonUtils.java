@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * 通用工具类 Created by Administrator on 2017/1/7.
@@ -92,5 +93,22 @@ public class CommonUtils {
 			// System.out.println("不是周末！");
 			return false;
 		}
+	}
+
+
+	/**
+	 * 生成一组指定范围、长度的随机整数
+	 * @param range 0到range的整数
+	 * @param lenght 返回随机个数
+	 * @return
+	 */
+	public static int[] generateGroupRandom(int range,int lenght){
+		int random[]  = new int[lenght];
+		Random rand = new Random();
+		for(int i=0;i<lenght;i++){
+			int number = rand.nextInt(range); //生成0-100以内的随机数
+			random[i] = number;
+		}
+		return random;
 	}
 }
