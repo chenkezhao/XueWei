@@ -57,11 +57,14 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 	@Override
 	public int getItemViewType(int position) {
-		if(position == 1/* || position==random[0]*/ ){
-			return 1;//广告
-		}else{
-			return 0;
+		if(CommonUtils.isWifiConnected()){
+			if(position == 1/* || position==random[0]*/ ){
+				return 1;//广告
+			}else{
+				return 0;
+			}
 		}
+		return 0;
 	}
 
 	@Override

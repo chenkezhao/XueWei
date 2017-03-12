@@ -1,6 +1,11 @@
 package com.xuewei.utils;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.widget.Toast;
 import com.xuewei.XWApplication;
+import com.xuewei.activity.XWEffectActivity;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -111,5 +116,18 @@ public class CommonUtils {
 			random[i] = number;
 		}
 		return random;
+	}
+
+	/**
+	 * 是否连接WIFI
+	 * @return
+	 */
+	public static boolean isWifiConnected() {
+		ConnectivityManager connectivityManager = (ConnectivityManager) XWApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo wifiNetworkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		if (wifiNetworkInfo.isConnected()) {
+			return true;
+		}
+		return false;
 	}
 }
