@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="BaseAppTheme">
+        <!--设置波纹颜色-->
+        <item name="android:colorControlHighlight">@color/colorPrimaryLight</item>
+        <!--设置checkbox等控件的选中颜色
+        <item name="android:colorAccent">#0a6e14</item>-->
+
+        <!--
+        波纹设置
+        组件中的属性
+        android:background="?android:attr/selectableItemBackground"波纹有边界
+        android:background="?android:attr/selectableItemBackgroundBorderless"波纹超出边界
+        -->
+    </style>
+</resources>

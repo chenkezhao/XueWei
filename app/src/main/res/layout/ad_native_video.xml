@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="16px"
     android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
     app:cardBackgroundColor="@color/colorTextInPrimaryDark"
     app:cardCornerRadius="2dp"
     app:cardElevation="2dp"
@@ -13,38 +14,23 @@
     app:cardUseCompatPadding="false"
     app:contentPadding="2px">
 
-    <com.zhy.autolayout.AutoLinearLayout
+
+    <RelativeLayout
+        android:id="@+id/rl_native_video_ad"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:orientation="vertical">
+        android:layout_height="200dp"
+        android:layout_marginBottom="64dip"
+        android:background="#000" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RelativeLayout
-                android:id="@+id/rl_native_video_ad"
-                android:layout_width="match_parent"
-                android:background="#000"
-                android:layout_height="200dp" />
-            <TextView
-                android:id="@+id/tv_adVideo_loading"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:text="Loading..."/>
-        </FrameLayout>
+    <TextView
+        android:id="@+id/tv_adVideo_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:text="Loading...."
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp" />
 
-        <RelativeLayout
-            android:id="@+id/rl_video_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true">
-
-            <include layout="@layout/layout_video_info" />
-        </RelativeLayout>
-    </com.zhy.autolayout.AutoLinearLayout>
+    <include layout="@layout/layout_video_info" />
 </com.xuewei.widgets.AutoCardView>

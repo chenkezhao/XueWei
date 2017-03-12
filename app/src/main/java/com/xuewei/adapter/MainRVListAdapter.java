@@ -129,7 +129,9 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 				holder1.content.setVisibility(View.GONE);
 			}
 		} else if (holder instanceof ViewHolder2) {
-			//广告段
+			//广告视频
+			ViewHolder2 holder2 = ((ViewHolder2)holder);
+			holder2.startPlayVideo();
 		}
 
 	}
@@ -184,7 +186,10 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 			mVideoInfoLayout = (RelativeLayout) view.findViewById(R.id.rl_video_info);
 			loading = (TextView) view.findViewById(R.id.tv_adVideo_loading);
 			card = (CardView) view.findViewById(R.id.cv_native_video_layout);
-			setupNativeVideoAd();
+		}
+
+		public void startPlayVideo(){
+			new VideoAsyncTask().execute();
 		}
 
 
@@ -243,7 +248,7 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 						@Override
 						public void onPlayFailed(int errorCode) {
-							loading.setText("play failed...");
+							loading.setText("play failed..."+errorCode);
 							loading.setVisibility(View.VISIBLE);
 							switch (errorCode) {
 								case ErrorCode.NON_NETWORK:
@@ -315,8 +320,29 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 			}
 		}
 
-	}
 
+		class VideoAsyncTask extends AsyncTask<String,Integer,String>{
+
+			@Override
+			protected void onPreExecute() {
+				super.onPreExecute();
+				loading.setText("Loading...");
+				loading.setVisibility(View.VISIBLE);
+			}
+
+			@Override
+			protected String doInBackground(String... params) {
+				setupNativeVideoAd();
+				return null;
+			}
+
+			@Override
+			protected void onPostExecute(String s) {
+				super.onPostExecute(s);
+			}
+		}
+
+	}
 
 
 
