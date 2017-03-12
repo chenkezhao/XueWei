@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         });
 
         //设置标题
-        ctlToolbar.setTitle("高清图解.穴位");
+        ctlToolbar.setTitle("十二经络|奇经八脉");
         ctlToolbar.setTitleEnabled(true);
         ctlToolbar.setExpandedTitleColor(getResources().getColor(R.color.colorAccent));//设置还没收缩时状态下字体颜色
         ctlToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.colorTextInPrimaryDark));//设置收缩后Toolbar上字体的颜色
