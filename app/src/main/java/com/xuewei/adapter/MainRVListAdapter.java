@@ -52,12 +52,12 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 		this.mContext = mContext;
 		this.mGroupXueWeiList = datas;
 		groupXueWeiDao = GroupXueWeiDao.getInstance();
-		random = CommonUtils.generateGroupRandom(datas.size(),1);
+		random = CommonUtils.generateGroupRandom(5,datas.size()-1,1);
 	}
 
 	@Override
 	public int getItemViewType(int position) {
-		if(position == 1/*random[0]*/ ){
+		if(position == 1/* || position==random[0]*/ ){
 			return 1;//广告
 		}else{
 			return 0;

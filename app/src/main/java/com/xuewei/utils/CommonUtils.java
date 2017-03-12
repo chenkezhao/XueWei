@@ -98,15 +98,16 @@ public class CommonUtils {
 
 	/**
 	 * 生成一组指定范围、长度的随机整数
-	 * @param range 0到range的整数
+	 * @param sRange 范围开始
+	 * @param eRange 范围结束
 	 * @param lenght 返回随机个数
 	 * @return
 	 */
-	public static int[] generateGroupRandom(int range,int lenght){
+	public static int[] generateGroupRandom(int sRange,int eRange,int lenght){
 		int random[]  = new int[lenght];
 		Random rand = new Random();
 		for(int i=0;i<lenght;i++){
-			int number = rand.nextInt(range); //生成0-100以内的随机数
+			int number =  new Random().nextInt(eRange - sRange) + sRange;
 			random[i] = number;
 		}
 		return random;
