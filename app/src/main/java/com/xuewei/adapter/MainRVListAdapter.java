@@ -250,19 +250,19 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 									MessageUtils.getInstance().showShortToast("网络异常");
 									break;
 								case ErrorCode.NON_AD:
-									MessageUtils.getInstance().showShortToast("原生视频暂无广告");
+//									MessageUtils.getInstance().showShortToast("原生视频暂无广告");
 									break;
 								case ErrorCode.RESOURCE_NOT_READY:
-									MessageUtils.getInstance().showShortToast("原生视频资源还没准备好");
+//									MessageUtils.getInstance().showShortToast("原生视频资源还没准备好");
 									break;
 								case ErrorCode.SHOW_INTERVAL_LIMITED:
-									MessageUtils.getInstance().showShortToast("请勿频繁展示");
+//									MessageUtils.getInstance().showShortToast("请勿频繁展示");
 									break;
 								case ErrorCode.WIDGET_NOT_IN_VISIBILITY_STATE:
-									MessageUtils.getInstance().showShortToast("原生视频控件处在不可见状态");
+//									MessageUtils.getInstance().showShortToast("原生视频控件处在不可见状态");
 									break;
 								default:
-									MessageUtils.getInstance().logError("请稍后再试");
+//									MessageUtils.getInstance().logError("请稍后再试");
 									break;
 							}
 						}
