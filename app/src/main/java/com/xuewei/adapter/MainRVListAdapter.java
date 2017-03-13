@@ -52,19 +52,22 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 	private List<GroupXueWei> mGroupXueWeiList;
 	private GroupXueWei groupXueWei;
 	private GroupXueWeiDao groupXueWeiDao;
-	private int random[];
+	private int random[] = {1,10};
 
 	public MainRVListAdapter(Context mContext, List<GroupXueWei> datas){
 		this.mContext = mContext;
 		this.mGroupXueWeiList = datas;
 		groupXueWeiDao = GroupXueWeiDao.getInstance();
-		random = CommonUtils.generateGroupRandom(5,datas.size()-1,1);
+		//广告占位random
+		mGroupXueWeiList.add(random[0],null);
+		mGroupXueWeiList.add(random[1],null);
+		//random = CommonUtils.generateGroupRandom(5,datas.size()-1,1);
 	}
 
 	@Override
 	public int getItemViewType(int position) {
 		if(CommonUtils.isWifiConnected()){
-			if(position == 1/* || position==random[0]*/ ){
+			if(position == random[0]  || position==random[1] ){
 				return 1;//广告
 			}else{
 				return 0;
