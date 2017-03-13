@@ -47,7 +47,6 @@
             android:layout_height="450px"
             android:clickable="true"
             android:gravity="center"
-            android:scaleType="centerCrop"
             fresco:actualImageScaleType="centerCrop"
             fresco:failureImage="@drawable/ic_not_img"
             fresco:failureImageScaleType="centerInside"

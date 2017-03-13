@@ -17,7 +17,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.backends.pipeline.PipelineDraweeController;
+import com.facebook.drawee.controller.AbstractDraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.xuewei.R;
 import com.xuewei.XWApplication;
 import com.xuewei.activity.XWEffectActivity;
@@ -108,11 +114,25 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 					mContext.startActivity(intent);
 				}
 			});
+
+
 			String imgName  = groupXueWei.getUrl();
 			imgName = imgName.substring(0,imgName.lastIndexOf("."));
 			int resId = mContext.getResources().getIdentifier(imgName, "mipmap" , mContext.getPackageName());
 			Uri uri = Uri.parse("res:///"+resId);
-			holder1.previewImg.setImageURI(uri);
+//			holder1.previewImg.setImageURI(uri);
+
+			int width = 50, height = 100;
+			ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+					.setResizeOptions(new ResizeOptions(width, height))
+					.build();
+			AbstractDraweeController controller = Fresco.newDraweeControllerBuilder()
+					.setOldController(holder1.previewImg.getController())
+					.setImageRequest(request)
+					.build();
+			holder1.previewImg.setController(controller);
+
+
 			holder1.title.setText(groupXueWei.getTitle());
 			String subTitle = groupXueWei.getSubTitle();
 			if(TextUtils.isEmpty(subTitle)){
