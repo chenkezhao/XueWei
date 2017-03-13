@@ -201,12 +201,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_home:
                 mGroupXueWeiList.clear();
                 mGroupXueWeiList.addAll(groupXueWeiDao.getAll());
-                mainRVListAdapter.notifyDataSetChanged();
+                mainRVListAdapter.updateData();
                 break;
             case R.id.nav_collection:
                 mGroupXueWeiList.clear();
                 mGroupXueWeiList.addAll(groupXueWeiDao.getBy("collection",true));
-                mainRVListAdapter.notifyDataSetChanged();
+                mainRVListAdapter.updateData();
                 break;
             case R.id.nav_share:
                 MessageUtils.getInstance().showAlertDialog(MainActivity.this,"溫馨提示","你可以通过QQ分享该应用，步骤：QQ好友-聊天页面-文件-应用!");
@@ -225,19 +225,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onDestroy() {
         super.onDestroy();
         MyDatabase.getInstance().closeDatabase();
-
-
         // 展示广告条窗口的 onDestroy() 回调方法中调用
         BannerManager.getInstance(mContext).onDestroy();
+
         // 退出应用时调用，用于释放资源
         // 如果无法保证应用主界面的 onDestroy() 方法被执行到，请移动以下接口到应用的退出逻辑里面调用
+
         // 插屏广告（包括普通插屏广告、轮播插屏广告、原生插屏广告）
         SpotManager.getInstance(mContext).onAppExit();
         // 视频广告（包括普通视频广告、原生视频广告）
         VideoAdManager.getInstance(mContext).onAppExit();
-
-        // 原生视频广告
-        VideoAdManager.getInstance(mContext).onDestroy();
     }
 
 

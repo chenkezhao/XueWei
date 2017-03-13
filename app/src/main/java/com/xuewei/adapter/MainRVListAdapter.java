@@ -58,10 +58,18 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 		this.mContext = mContext;
 		this.mGroupXueWeiList = datas;
 		groupXueWeiDao = GroupXueWeiDao.getInstance();
-		//广告占位random
-		mGroupXueWeiList.add(random[0],null);
-		mGroupXueWeiList.add(random[1],null);
 		//random = CommonUtils.generateGroupRandom(5,datas.size()-1,1);
+	}
+
+	public void updateData(){
+		//广告占位random
+		int size = mGroupXueWeiList.size();
+		if(size>1){
+			mGroupXueWeiList.add(random[0],null);
+		}else if(size>10){
+			mGroupXueWeiList.add(random[1],null);
+		}
+		notifyDataSetChanged();
 	}
 
 	@Override
