@@ -67,6 +67,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(mToolbar);
+        mToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RecyclerView.LayoutManager layoutManager = mRecyclerView.getLayoutManager();
+                if (layoutManager instanceof LinearLayoutManager) {
+                    LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+                    linearManager.scrollToPositionWithOffset(0, 0);
+                    linearManager.setStackFromEnd(true);
+                }
+            }
+        });
 		if (getSupportActionBar() != null) {
 			// Enable the Up button，返回按钮
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
