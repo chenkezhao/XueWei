@@ -17,7 +17,6 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,7 +96,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		preloadData();
 		// checkAdSettings();
 		// 设置轮播插屏广告
-		setupSlideableSpotAd();
+		try{
+			setupSlideableSpotAd();
+		}catch (Exception e){
+			//MessageUtils.getInstance().showLongToast(e.toString());
+		}
 	}
 
 	private void initView() {
@@ -232,7 +235,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		MyDatabase.getInstance().closeDatabase();
+		//MyDatabase.getInstance().closeDatabase();
 		// 展示广告条窗口的 onDestroy() 回调方法中调用
 		BannerManager.getInstance(mContext).onDestroy();
 		// 轮播插屏广告
