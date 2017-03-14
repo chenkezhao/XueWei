@@ -1,6 +1,7 @@
 package com.xuewei.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
@@ -68,6 +69,22 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// 广告
+		// 预加载数据
+		preloadData();
+		// checkAdSettings();
+		// 设置轮播插屏广告
+		try{
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					setupSlideableSpotAd();
+				}
+			},5000);
+		}catch (Exception e){
+			//MessageUtils.getInstance().showLongToast(e.toString());
+		}
+
 		setSupportActionBar(mToolbar);
 		mToolbar.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -91,16 +108,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		initData();
 		initView();
 
-		// 广告
-		// 预加载数据
-		preloadData();
-		// checkAdSettings();
-		// 设置轮播插屏广告
-		try{
-			setupSlideableSpotAd();
-		}catch (Exception e){
-			//MessageUtils.getInstance().showLongToast(e.toString());
-		}
 	}
 
 	private void initView() {
@@ -237,7 +244,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		super.onDestroy();
 		//MyDatabase.getInstance().closeDatabase();
 		// 展示广告条窗口的 onDestroy() 回调方法中调用
-		BannerManager.getInstance(mContext).onDestroy();
+		//BannerManager.getInstance(mContext).onDestroy();
 		// 轮播插屏广告
 		SpotManager.getInstance(mContext).onDestroy();
 
@@ -308,14 +315,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		SpotManager.getInstance(mContext).setImageType(SpotManager.IMAGE_TYPE_VERTICAL);
 
 		// 设置动画类型，默认高级动画
-		// // 无动画
-		// SpotManager.getInstance(mContext).setAnimationType(SpotManager
-		// .ANIMATION_TYPE_NONE);
+		 // 无动画
+		 SpotManager.getInstance(mContext).setAnimationType(SpotManager .ANIMATION_TYPE_NONE);
 		// // 简单动画
 		// SpotManager.getInstance(mContext).setAnimationType(SpotManager
 		// .ANIMATION_TYPE_SIMPLE);
 		// 高级动画
-		SpotManager.getInstance(mContext).setAnimationType(SpotManager.ANIMATION_TYPE_ADVANCED);
+//		SpotManager.getInstance(mContext).setAnimationType(SpotManager.ANIMATION_TYPE_ADVANCED);
 
 		// 展示轮播插屏广告
 		SpotManager.getInstance(mContext).showSlideableSpot(mContext, new SpotListener() {
