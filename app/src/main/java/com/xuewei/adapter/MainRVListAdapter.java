@@ -18,7 +18,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.backends.pipeline.PipelineDraweeController;
 import com.facebook.drawee.controller.AbstractDraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.common.ResizeOptions;
@@ -40,7 +39,6 @@ import net.youmi.android.normal.video.VideoAdSettings;
 import net.youmi.android.normal.video.VideoInfoViewBuilder;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * 
@@ -162,7 +160,7 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 		} else if (holder instanceof ViewHolder2) {
 			//广告视频
 			ViewHolder2 holder2 = ((ViewHolder2)holder);
-			holder2.startPlayVideo();
+			holder2.setupNativeVideoAd();
 		}
 
 	}
@@ -207,6 +205,8 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 		private TextView loading;
 		private CardView card;
 		private Context mContext;
+		private VideoAdSettings videoAdSettings;
+		private VideoInfoViewBuilder videoInfoViewBuilder;
 
 		public ViewHolder2(View view) {
 			super(view);
@@ -217,25 +217,14 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 			mVideoInfoLayout = (RelativeLayout) view.findViewById(R.id.rl_video_info);
 			loading = (TextView) view.findViewById(R.id.tv_adVideo_loading);
 			card = (CardView) view.findViewById(R.id.cv_native_video_layout);
-		}
-
-		public void startPlayVideo(){
-			new VideoAsyncTask().execute();
-		}
-
-
-		/**
-		 * 设置原生视频广告
-		 */
-		private void setupNativeVideoAd() {
 			// 设置视频广告
-			final VideoAdSettings videoAdSettings = new VideoAdSettings();
+			videoAdSettings = new VideoAdSettings();
 
 			//		// 只需要调用一次，由于在主页窗口中已经调用了一次，所以此处无需调用
 			//		VideoAdManager.getInstance().requestVideoAd(mContext);
 
 			// 设置信息流视图，将图标，标题，描述，下载按钮对应的ID传入
-			final VideoInfoViewBuilder videoInfoViewBuilder =
+			videoInfoViewBuilder =
 					VideoAdManager.getInstance(mContext).getVideoInfoViewBuilder(mContext)
 							.setRootContainer(mVideoInfoLayout).bindAppIconView(R.id.info_iv_icon)
 							.bindAppNameView(R.id.info_tv_title).bindAppDescriptionView(R.id.info_tv_description)
@@ -243,6 +232,12 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
 
+		}
+
+		/**
+		 * 设置原生视频广告
+		 */
+		private void setupNativeVideoAd() {
 			// 获取原生视频控件
 			View nativeVideoAdView = VideoAdManager.getInstance(mContext)
 					.getNativeVideoAdView(mContext, videoAdSettings, new VideoAdListener() {
@@ -273,8 +268,8 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 							if (mNativeVideoAdLayout != null) {
 								mNativeVideoAdLayout.removeAllViews();
 								mNativeVideoAdLayout.setVisibility(View.GONE);
+								card.setVisibility(View.GONE);
 							}
-							card.setVisibility(View.GONE);
 						}
 
 						@Override
@@ -315,8 +310,8 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 							if (mNativeVideoAdLayout != null) {
 								mNativeVideoAdLayout.removeAllViews();
 								mNativeVideoAdLayout.setVisibility(View.GONE);
+								card.setVisibility(View.GONE);
 							}
-							card.setVisibility(View.GONE);
 						}
 
 					});
@@ -329,6 +324,7 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 					// 添加原生视频广告
 					mNativeVideoAdLayout.addView(nativeVideoAdView, params);
 					mNativeVideoAdLayout.setVisibility(View.VISIBLE);
+					card.setVisibility(View.VISIBLE);
 				}
 			}
 		}
