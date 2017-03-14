@@ -50,7 +50,7 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 	private List<GroupXueWei> mGroupXueWeiList;
 	private GroupXueWei groupXueWei;
 	private GroupXueWeiDao groupXueWeiDao;
-	private int random[] = {1,10};
+	private int random[] = {1};
 
 	public MainRVListAdapter(Context mContext, List<GroupXueWei> datas){
 		this.mContext = mContext;
@@ -65,7 +65,7 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 		if(size>1){
 			mGroupXueWeiList.add(random[0],null);
 		}else if(size>10){
-			mGroupXueWeiList.add(random[1],null);
+			//mGroupXueWeiList.add(random[1],null);
 		}
 		notifyDataSetChanged();
 	}
@@ -73,7 +73,7 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 	@Override
 	public int getItemViewType(int position) {
 		if(CommonUtils.isWifiConnected()){
-			if(position == random[0]  || position==random[1] ){
+			if(position == random[0] ){
 				return 1;//广告
 			}else{
 				return 0;
@@ -203,7 +203,6 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 		 */
 		private RelativeLayout mVideoInfoLayout;
 		private TextView loading;
-		private CardView card;
 		private Context mContext;
 		private VideoAdSettings videoAdSettings;
 		private VideoInfoViewBuilder videoInfoViewBuilder;
@@ -216,7 +215,6 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 			// 视频信息栏容器
 			mVideoInfoLayout = (RelativeLayout) view.findViewById(R.id.rl_video_info);
 			loading = (TextView) view.findViewById(R.id.tv_adVideo_loading);
-			card = (CardView) view.findViewById(R.id.cv_native_video_layout);
 			// 设置视频广告
 			videoAdSettings = new VideoAdSettings();
 
@@ -268,7 +266,6 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 							if (mNativeVideoAdLayout != null) {
 								mNativeVideoAdLayout.removeAllViews();
 								mNativeVideoAdLayout.setVisibility(View.GONE);
-								card.setVisibility(View.GONE);
 							}
 						}
 
@@ -296,6 +293,19 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 //									MessageUtils.getInstance().logError("请稍后再试");
 									break;
 							}
+
+
+							// 隐藏视频信息流视图
+							hideVideoInfoLayout();
+							// 释放资源
+							if (videoInfoViewBuilder != null) {
+								videoInfoViewBuilder.release();
+							}
+							// 移除原生视频控件
+							if (mNativeVideoAdLayout != null) {
+								mNativeVideoAdLayout.removeAllViews();
+								mNativeVideoAdLayout.setVisibility(View.GONE);
+							}
 						}
 
 						@Override
@@ -310,7 +320,6 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 							if (mNativeVideoAdLayout != null) {
 								mNativeVideoAdLayout.removeAllViews();
 								mNativeVideoAdLayout.setVisibility(View.GONE);
-								card.setVisibility(View.GONE);
 							}
 						}
 
@@ -324,7 +333,6 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 					// 添加原生视频广告
 					mNativeVideoAdLayout.addView(nativeVideoAdView, params);
 					mNativeVideoAdLayout.setVisibility(View.VISIBLE);
-					card.setVisibility(View.VISIBLE);
 				}
 			}
 		}
