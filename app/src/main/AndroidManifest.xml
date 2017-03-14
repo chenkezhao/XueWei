@@ -28,10 +28,10 @@
             android:value="1920" />
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="58a3cbcbf5ade451d20017aa" />
+            android:value="58c7f8283eae256407001b4a" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="text1" />
+            android:value="xuewei-1.0" />
 
         <activity android:name=".activity.MainActivity"/>
         <activity android:name=".activity.XWEffectActivity" />
