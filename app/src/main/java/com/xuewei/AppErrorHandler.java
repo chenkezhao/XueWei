@@ -103,7 +103,7 @@ public class AppErrorHandler implements UncaughtExceptionHandler {
 				// 插屏广告（包括普通插屏广告、轮播插屏广告、原生插屏广告）
 				SpotManager.getInstance(mContext).onAppExit();
 				// 视频广告（包括普通视频广告、原生视频广告）
-				VideoAdManager.getInstance(mContext).onAppExit();
+				//VideoAdManager.getInstance(mContext).onAppExit();
 				android.os.Process.killProcess(android.os.Process.myPid());
 				System.exit(1);
 			} catch (Exception e) {

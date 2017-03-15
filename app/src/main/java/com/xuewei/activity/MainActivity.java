@@ -254,7 +254,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		// 插屏广告（包括普通插屏广告、轮播插屏广告、原生插屏广告）
 		SpotManager.getInstance(mContext).onAppExit();
 		// 视频广告（包括普通视频广告、原生视频广告）
-		VideoAdManager.getInstance(mContext).onAppExit();
+		//VideoAdManager.getInstance(mContext).onAppExit();
 	}
 
 	// -----------------------必须调用以下全部生命周期方法-------------------------------
@@ -263,21 +263,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	protected void onStart() {
 		super.onStart();
 		// 原生视频广告
-		VideoAdManager.getInstance(mContext).onStart();
+		//VideoAdManager.getInstance(mContext).onStart();
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		// 原生视频广告
-		VideoAdManager.getInstance(mContext).onResume();
+		//VideoAdManager.getInstance(mContext).onResume();
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
 		// 原生视频广告
-		VideoAdManager.getInstance(mContext).onPause();
+		//VideoAdManager.getInstance(mContext).onPause();
 		// 轮播插屏广告
 		SpotManager.getInstance(mContext).onPause();
 	}
@@ -286,7 +286,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	protected void onStop() {
 		super.onStop();
 		// 原生视频广告
-		VideoAdManager.getInstance(mContext).onStop();
+		//VideoAdManager.getInstance(mContext).onStop();
 		// 轮播插屏广告
 		SpotManager.getInstance(mContext).onStop();
 	}
@@ -298,9 +298,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	 */
 	private void preloadData() {
 		// 设置服务器回调 userId，一定要在请求广告之前设置，否则无效
-		VideoAdManager.getInstance(mContext).setUserId("xuewei689");
+		//VideoAdManager.getInstance(mContext).setUserId("xuewei689");
 		// 请求视频广告
-		VideoAdManager.getInstance(mContext).requestVideoAd(mContext);
+		//VideoAdManager.getInstance(mContext).requestVideoAd(mContext);
 	}
 
 	/**

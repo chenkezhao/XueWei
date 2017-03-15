@@ -61,24 +61,24 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 	public void updateData(){
 		//广告占位random
-		int size = mGroupXueWeiList.size();
-		if(size>1){
-			mGroupXueWeiList.add(random[0],null);
-		}else if(size>10){
-			//mGroupXueWeiList.add(random[1],null);
-		}
+//		int size = mGroupXueWeiList.size();
+//		if(size>1){
+//			mGroupXueWeiList.add(random[0],null);
+//		}else if(size>10){
+//			//mGroupXueWeiList.add(random[1],null);
+//		}
 		notifyDataSetChanged();
 	}
 
 	@Override
 	public int getItemViewType(int position) {
-		if(CommonUtils.isWifiConnected()){
-			if(position == random[0] ){
-				return 1;//广告
-			}else{
-				return 0;
-			}
-		}
+//		if(CommonUtils.isWifiConnected()){
+//			if(position == random[0] ){
+//				return 1;//广告
+//			}else{
+//				return 0;
+//			}
+//		}
 		return 0;
 	}
 
