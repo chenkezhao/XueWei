@@ -15,20 +15,11 @@
     <application
         android:name=".XWApplication"
         android:allowBackup="true"
-        android:icon="${icon}"
-        android:label="${app_name}"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!--${icon}，${app_name} 引用 manifestPlaceholders 容器中 icon ， app_name 的值。-->
-        <meta-data
-            android:name="app_name"
-            android:value="${app_name}"/>
-        <meta-data
-            android:name="icon"
-            android:value="${icon}"/>
-
 
         <meta-data
             android:name="design_width"
@@ -41,7 +32,7 @@
             android:value="58c7f8283eae256407001b4a" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="xuewei-1.0" />
+            android:value="${umeng_channel}" />
 
         <activity android:name=".activity.MainActivity"/>
         <activity android:name=".activity.XWEffectActivity" />
@@ -92,7 +83,7 @@
         <!-- 有米渠道号(可选配置) 渠道号不能带空格，类型为整数 -->
         <meta-data
             android:name="YOUMI_CHANNEL"
-            android:value="0" >
+            android:value="${youmi_channel}" >
         </meta-data >
         <!-- 有米视频播放Activity暂时不支持Android N的分屏模式，需要显示声明不支持(android:resizeableActivity="false")-->
         <activity
