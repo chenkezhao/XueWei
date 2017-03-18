@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xuewei.R;
+import com.xuewei.adapter.DividerItemDecoration;
 import com.xuewei.adapter.MainRVListAdapter;
 import com.xuewei.db.MyDatabase;
 import com.xuewei.db.dao.GroupXueWeiDao;
@@ -29,6 +30,7 @@ import com.xuewei.db.dao.XueWeiEffectDao;
 import com.xuewei.entity.GroupXueWei;
 import com.xuewei.entity.XueWeiEffect;
 import com.xuewei.utils.MessageUtils;
+import com.xuewei.utils.SharedPreferencesUtils;
 import com.xuewei.utils.XmlReadUtils;
 
 import net.youmi.android.normal.banner.BannerManager;
@@ -97,6 +99,31 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 				}
 			}
 		});
+		mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				switch (item.getItemId()){
+					case R.id.menu_search:
+						break;
+					case R.id.menu_layout:
+						int viewType = SharedPreferencesUtils.getListViewType(MainActivity.this);
+						SharedPreferencesUtils.setListViewType(MainActivity.this,viewType==0?"2":"0");
+						if(mGroupXueWeiList!=null){
+							mainRVListAdapter = new MainRVListAdapter(MainActivity.this, mGroupXueWeiList);
+							mRecyclerView.setAdapter(mainRVListAdapter);
+							if(SharedPreferencesUtils.getListViewType(MainActivity.this)==0){
+								mRecyclerView.removeItemDecoration(new DividerItemDecoration(MainActivity.this,DividerItemDecoration.VERTICAL_LIST));
+							}else{
+								mRecyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,DividerItemDecoration.VERTICAL_LIST));
+							}
+						}
+						break;
+					default:
+						break;
+				}
+				return false;
+			}
+		});
 		if (getSupportActionBar() != null) {
 			// Enable the Up button，返回按钮
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -129,6 +156,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		ctlToolbar.setTitleEnabled(true);
 		ctlToolbar.setExpandedTitleColor(getResources().getColor(R.color.colorAccent));// 设置还没收缩时状态下字体颜色
 		ctlToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.colorTextInPrimaryDark));// 设置收缩后Toolbar上字体的颜色
+
+		if(SharedPreferencesUtils.getListViewType(MainActivity.this)==0){
+			mRecyclerView.removeItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
+		}else{
+			mRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
+		}
 
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 		linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

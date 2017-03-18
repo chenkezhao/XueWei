@@ -31,6 +31,7 @@ import com.xuewei.entity.GroupXueWei;
 import com.xuewei.utils.CommonUtils;
 import com.xuewei.utils.MessageUtils;
 import com.xuewei.utils.SVGUtils;
+import com.xuewei.utils.SharedPreferencesUtils;
 
 import net.youmi.android.normal.common.ErrorCode;
 import net.youmi.android.normal.video.VideoAdListener;
@@ -51,12 +52,14 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 	private GroupXueWei groupXueWei;
 	private GroupXueWeiDao groupXueWeiDao;
 	private int random[] = {1};
+	private int viewType;
 
 	public MainRVListAdapter(Context mContext, List<GroupXueWei> datas){
 		this.mContext = mContext;
 		this.mGroupXueWeiList = datas;
 		groupXueWeiDao = GroupXueWeiDao.getInstance();
 		//random = CommonUtils.generateGroupRandom(5,datas.size()-1,1);
+		viewType= SharedPreferencesUtils.getListViewType(mContext);
 	}
 
 	public void updateData(){
@@ -79,18 +82,19 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 //				return 0;
 //			}
 //		}
-		return 0;
+		return this.viewType;
 	}
 
 	@Override
 	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		if (viewType == 0) {
 			return new ViewHolder1(LayoutInflater.from(mContext).inflate(R.layout.main_rvlist_item, parent, false));
-		} else {
+		} else if(viewType==1){
 			return new ViewHolder2(LayoutInflater.from(mContext).inflate(R.layout.ad_native_video, parent, false));
+		}else{
+			return new ViewHolder3(LayoutInflater.from(mContext).inflate(R.layout.main_list_item, parent, false));
 		}
 	}
-
 	@Override
 	public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 		if (holder instanceof ViewHolder1) {
@@ -161,6 +165,36 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 			//广告视频
 			ViewHolder2 holder2 = ((ViewHolder2)holder);
 			holder2.setupNativeVideoAd();
+		} else if(holder instanceof ViewHolder3){
+			ViewHolder3 holder3 = ((ViewHolder3)holder);
+			groupXueWei = mGroupXueWeiList.get(position);
+			if(groupXueWei.getCollection()){
+				SVGUtils.getInstance().changeSVGColor(holder3.collectionIcon,R.drawable.ic_collection,R.color.collection);
+			}else{
+				SVGUtils.getInstance().changeSVGColor(holder3.collectionIcon,R.drawable.ic_collection,R.color.unCollection);
+			}
+			holder3.collectionIcon.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					groupXueWei.setCollection(!groupXueWei.getCollection());
+					groupXueWeiDao.update(groupXueWei);
+					if(groupXueWei.getCollection()){
+						SVGUtils.getInstance().changeSVGColor((ImageView) v,R.drawable.ic_collection,R.color.collection);
+					}else{
+						SVGUtils.getInstance().changeSVGColor((ImageView) v,R.drawable.ic_collection,R.color.unCollection);
+					}
+				}
+			});
+			holder3.showDetail.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent =new Intent(mContext, XWEffectActivity.class);
+					GroupXueWei group = mGroupXueWeiList.get(position);
+					intent.putExtra(GroupXueWei.GROUPXUEWEI,group);
+					mContext.startActivity(intent);
+				}
+			});
+			holder3.title.setText(groupXueWei.getTitle());
 		}
 
 	}
@@ -170,6 +204,9 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 		return mGroupXueWeiList.size();
 	}
 
+	/**
+	 * 卡片布局
+	 */
 	class ViewHolder1 extends RecyclerView.ViewHolder {
 
 		SimpleDraweeView previewImg;
@@ -191,6 +228,9 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 	}
 
 
+	/**
+	 * 视频广告布局
+	 */
 	static class ViewHolder2 extends RecyclerView.ViewHolder {
 
 		/**
@@ -380,5 +420,21 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 	}
 
 
+	/**
+	 * 列表布局
+	 */
+	static class ViewHolder3 extends RecyclerView.ViewHolder {
+
+		Button showDetail;
+		ImageButton collectionIcon;
+		TextView title;
+
+		public ViewHolder3(View view){
+			super(view);
+			showDetail = (Button) view.findViewById(R.id.btn_showDetail);
+			collectionIcon  = (ImageButton) view.findViewById(R.id.ib_collection);
+			title = (TextView)view.findViewById(R.id.titleTV);
+		}
+	}
 
 }
