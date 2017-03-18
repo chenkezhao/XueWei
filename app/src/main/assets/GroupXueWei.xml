@@ -27,14 +27,6 @@
         </GROUPXUEWEI>
         <GROUPXUEWEI>
             <SEQ>4</SEQ>
-            <TITLE>国家标准穴位挂图</TITLE>
-            <SUBTITLE></SUBTITLE>
-            <CONTENT></CONTENT>
-            <COLLECTION>false</COLLECTION>
-            <URL>p4.jpg</URL>
-        </GROUPXUEWEI>
-        <GROUPXUEWEI>
-            <SEQ>5</SEQ>
             <TITLE>任脉穴位</TITLE>
             <SUBTITLE>任脉预防和主治的疾病</SUBTITLE>
             <CONTENT>泌尿生殖系统：前列腺炎、阳瘘、早泄、盆腔炎、附件炎、白带病。\n\n消化系统：胃痛、消化不良、胃渍疡。\n\n其他：失眠、胸闷气短、腰痛。</CONTENT>
@@ -42,7 +34,7 @@
             <URL>p5.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>6</SEQ>
+            <SEQ>5</SEQ>
             <TITLE>手厥阴心包经穴位</TITLE>
             <SUBTITLE>手厥阴心包经预防和主治的疾病</SUBTITLE>
             <CONTENT>心血管系统：心愤、心动过缓、心动过速、心绞痛、心肌缺血、胸闷。\n\n其他：恶心、呕吐、抑郁症、中暑、休克、小儿惊风、胃痛胃胀，经脉所过的关节肌肉痛。</CONTENT>
@@ -50,7 +42,7 @@
             <URL>p6.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>7</SEQ>
+            <SEQ>6</SEQ>
             <TITLE>手少阳三焦经穴位</TITLE>
             <SUBTITLE>手少阳三焦经预防和主治的疾病</SUBTITLE>
             <CONTENT>五官病：耳鸣耳聋、聪腺炎、偏头痛、面神经炎、面肌痊挛。\n\n其他：肋间神经痛、便秘、感冒、中风后遗症、肘关节屈伸不利，经脉所过的关节和肌肉软组 织病。</CONTENT>
@@ -58,7 +50,7 @@
             <URL>p7.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>8</SEQ>
+            <SEQ>7</SEQ>
             <TITLE>手少阴心经穴位</TITLE>
             <SUBTITLE>手少阴心经预防和主治的疾病</SUBTITLE>
             <CONTENT>心血管病：冠心病、心绞痛、心动过缓、心动过速、心肌缺血、心恨。\n\n猜神疾病：失眠健忘、神经衰弱、精神分裂、癱痫、神经官能症。 \n\n其他：经脉所过的肌肉痛、肋间神经痛。</CONTENT>
@@ -66,7 +58,7 @@
             <URL>p8.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>9</SEQ>
+            <SEQ>8</SEQ>
             <TITLE>手太阳小肠经穴位</TITLE>
             <SUBTITLE>手太阳小肠经预防和主治的疾病</SUBTITLE>
             <CONTENT>五官病：咽痛、眼痛、耳鸣耳聋、中耳炎、腮腺炎、扁桃体炎、角膜炎、头痛。 \n\n其他：腰扭伤、肩痛、落枕、失眠、療痫、经脉所过关节肌肉痛。</CONTENT>
@@ -74,7 +66,7 @@
             <URL>p9.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>10</SEQ>
+            <SEQ>9</SEQ>
             <TITLE>手太阴肺经穴位</TITLE>
             <SUBTITLE></SUBTITLE>
             <CONTENT>呼吸系统疾病：各种急慢性气管炎、支气管炎、哮喘、咳嗽、咳血、胸痛。 \n\n五官病：急慢性扁桃体炎、急慢性咽炎、咽痛、鼻炎、流鼻血。\n\n其他：经脉所过的关节屈伸障碍、肌肉疼。</CONTENT>
@@ -82,7 +74,7 @@
             <URL>p10.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>11</SEQ>
+            <SEQ>10</SEQ>
             <TITLE>手阳明大肠经穴位</TITLE>
             <SUBTITLE>手阳明大肠经预防及主治的疾病</SUBTITLE>
             <CONTENT>呼吸道疾病：感冒、支气管炎、发烧、头疼、咳嗽。\n\n头面疾病：头疼、面神经炎、面肌痉挛、面瘫、牙疼、麦粒肿、结膜炎、角膜炎、耳鸣、耳聋、三叉神经痛鼻炎鼻塞。\n\n其他：颈椎病、皮肤瘙痒I神经性皮炎、荨麻疹、经脉所过的关节活动障碍。</CONTENT>
@@ -90,55 +82,7 @@
             <URL>p11.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>12</SEQ>
-            <TITLE>真人针灸穴位挂图－男－背面</TITLE>
-            <SUBTITLE></SUBTITLE>
-            <CONTENT></CONTENT>
-            <COLLECTION>false</COLLECTION>
-            <URL>p12.jpg</URL>
-        </GROUPXUEWEI>
-        <GROUPXUEWEI>
-            <SEQ>13</SEQ>
-            <TITLE>真人针灸穴位挂图－男－侧面</TITLE>
-            <SUBTITLE></SUBTITLE>
-            <CONTENT></CONTENT>
-            <COLLECTION>false</COLLECTION>
-            <URL>p13.jpg</URL>
-        </GROUPXUEWEI>
-        <GROUPXUEWEI>
-            <SEQ>14</SEQ>
-            <TITLE>真人针灸穴位挂图－男－前面</TITLE>
-            <SUBTITLE></SUBTITLE>
-            <CONTENT></CONTENT>
-            <COLLECTION>false</COLLECTION>
-            <URL>p14.jpg</URL>
-        </GROUPXUEWEI>
-        <GROUPXUEWEI>
-            <SEQ>15</SEQ>
-            <TITLE>真人针灸穴位挂图－女－背面</TITLE>
-            <SUBTITLE></SUBTITLE>
-            <CONTENT></CONTENT>
-            <COLLECTION>false</COLLECTION>
-            <URL>p15.jpg</URL>
-        </GROUPXUEWEI>
-        <GROUPXUEWEI>
-            <SEQ>16</SEQ>
-            <TITLE>真人针灸穴位挂图－女－侧面</TITLE>
-            <SUBTITLE></SUBTITLE>
-            <CONTENT></CONTENT>
-            <COLLECTION>false</COLLECTION>
-            <URL>p16.jpg</URL>
-        </GROUPXUEWEI>
-        <GROUPXUEWEI>
-            <SEQ>17</SEQ>
-            <TITLE>真人针灸穴位挂图－女－前面</TITLE>
-            <SUBTITLE></SUBTITLE>
-            <CONTENT></CONTENT>
-            <COLLECTION>false</COLLECTION>
-            <URL>p17.jpg</URL>
-        </GROUPXUEWEI>
-        <GROUPXUEWEI>
-            <SEQ>18</SEQ>
+            <SEQ>11</SEQ>
             <TITLE>足厥阴肝经穴位</TITLE>
             <SUBTITLE>足厥阴肝经预防和主治的疾病</SUBTITLE>
             <CONTENT>生殖系统疾病：痛经、闭经、月经不调、盆腔炎、前列麻炎、疝气。\n\n肝胆病：各种急慢性肝炎、急慢性胆II炎、肝牌肿大、抑郁症。\n\n其他：头顶痛、头晕眼花、各种眩晕、癫痫，胃痛等。</CONTENT>
@@ -146,7 +90,7 @@
             <URL>p18.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>19</SEQ>
+            <SEQ>12</SEQ>
             <TITLE>足少阳胆经穴位</TITLE>
             <SUBTITLE>足少阳胆经预防和主治的疾病</SUBTITLE>
             <CONTENT>肝胆病：急慢性胆囊炎、胆绞痛、各种慢性肝炎。\n\n头面五官病：头昏、偏头痛、面神经炎、面神经麻痹、耳鸣、耳聋、近视。\n\n其他：感冒、发热、咽喉肿痛、肋、下疼、经脉所过处的肌肉疼。</CONTENT>
@@ -154,7 +98,7 @@
             <URL>p19.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>20</SEQ>
+            <SEQ>13</SEQ>
             <TITLE>足少阴肾经穴位</TITLE>
             <SUBTITLE>足少阴肾经预防及治疗的疾病</SUBTITLE>
             <CONTENT>泌尿生殖系统：急慢性前列腺炎、阳痿、早泄、遗精、术后尿潴留、睾丸炎、痛经、月经不调、盆腔炎、附件炎、胎位不正、各种肾炎、水肿。\n\n头面疾病：头痛、牙痛。\n\n其他：消化不良、泄泻、耳鸣耳聋、腰痛、中风、休克、经脉所过的各种关节肌肉软组织病。</CONTENT>
@@ -162,7 +106,7 @@
             <URL>p20.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>21</SEQ>
+            <SEQ>14</SEQ>
             <TITLE>足太阳膀胱经穴位</TITLE>
             <SUBTITLE></SUBTITLE>
             <CONTENT>呼吸系统：感冒、发烧、各种急慢性支气管炎、哮喘、肺炎。\n\n消化系统：消化不良、腹痛、痢疾、胃及十二指肠溃疡、胃下垂、急慢性胃肠炎、肝炎、胆嚢炎。\n\n泌尿生殖系统：肾炎、阳痿、睾丸炎、闭经、月经不调、痛经、盆腔炎、附件炎、宫颈糜烂。\n\n其他疾病：失眠、腰背痛、坐骨神经痛、中风后遗症、关节炎，经脉所过的肌肉痛。</CONTENT>
@@ -170,7 +114,7 @@
             <URL>p21.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>22</SEQ>
+            <SEQ>15</SEQ>
             <TITLE>足太阴脾经穴位</TITLE>
             <SUBTITLE>足太阴脾经预防及主治的疾病</SUBTITLE>
             <CONTENT>消化系统疾病：消化不良、泄泻、痢疾、便秘。\n\n妇科病：痛经、月经不调、闭经、月经提前或错后、盆腔炎、附件炎。\n\n男科：急悝性前列腺炎、水肿。\n\n其他：周身不明原因疼痛、关节炎、经脉所过的肌肉软组织疾病。</CONTENT>
@@ -178,12 +122,69 @@
             <URL>p22.jpg</URL>
         </GROUPXUEWEI>
         <GROUPXUEWEI>
-            <SEQ>23</SEQ>
+            <SEQ>16</SEQ>
             <TITLE>足阳明胃经穴位</TITLE>
             <SUBTITLE>足阳明胃经预防及主治的疾病</SUBTITLE>
             <CONTENT>胃肠道疾病：小儿腹泻、胃胀、胃疼'胃下垂'急性胃痉挛、胃炎、胃神经官能症、胃及十二指 肠溃疡、消化不良、食欲不振、便秘、泄泻'痢疾、胃肠螻动过慢。\n\n头面疾患：痤疮、黄褐斑、头痛、眼痛、牙疼、面神经麻痹、腮腺炎、咽炎。\n\n其他：中风偏瘫后遗症、慢性阑尾炎、乳腺增生、白细胞减少症、经脉所过的关节肌肉病。</CONTENT>
             <COLLECTION>false</COLLECTION>
             <URL>p23.jpg</URL>
+        </GROUPXUEWEI>
+
+        <GROUPXUEWEI>
+            <SEQ>17</SEQ>
+            <TITLE>国家标准穴位挂图</TITLE>
+            <SUBTITLE></SUBTITLE>
+            <CONTENT></CONTENT>
+            <COLLECTION>false</COLLECTION>
+            <URL>p4.jpg</URL>
+        </GROUPXUEWEI>
+        <GROUPXUEWEI>
+            <SEQ>18</SEQ>
+            <TITLE>真人针灸穴位挂图－男－背面</TITLE>
+            <SUBTITLE></SUBTITLE>
+            <CONTENT></CONTENT>
+            <COLLECTION>false</COLLECTION>
+            <URL>p12.jpg</URL>
+        </GROUPXUEWEI>
+        <GROUPXUEWEI>
+            <SEQ>19</SEQ>
+            <TITLE>真人针灸穴位挂图－男－侧面</TITLE>
+            <SUBTITLE></SUBTITLE>
+            <CONTENT></CONTENT>
+            <COLLECTION>false</COLLECTION>
+            <URL>p13.jpg</URL>
+        </GROUPXUEWEI>
+        <GROUPXUEWEI>
+            <SEQ>20</SEQ>
+            <TITLE>真人针灸穴位挂图－男－前面</TITLE>
+            <SUBTITLE></SUBTITLE>
+            <CONTENT></CONTENT>
+            <COLLECTION>false</COLLECTION>
+            <URL>p14.jpg</URL>
+        </GROUPXUEWEI>
+        <GROUPXUEWEI>
+            <SEQ>21</SEQ>
+            <TITLE>真人针灸穴位挂图－女－背面</TITLE>
+            <SUBTITLE></SUBTITLE>
+            <CONTENT></CONTENT>
+            <COLLECTION>false</COLLECTION>
+            <URL>p15.jpg</URL>
+        </GROUPXUEWEI>
+        <GROUPXUEWEI>
+            <SEQ>22</SEQ>
+            <TITLE>真人针灸穴位挂图－女－侧面</TITLE>
+            <SUBTITLE></SUBTITLE>
+            <CONTENT></CONTENT>
+            <COLLECTION>false</COLLECTION>
+            <URL>p16.jpg</URL>
+        </GROUPXUEWEI>
+        <GROUPXUEWEI>
+            <SEQ>23</SEQ>
+            <TITLE>真人针灸穴位挂图－女－前面</TITLE>
+            <SUBTITLE></SUBTITLE>
+            <CONTENT></CONTENT>
+            <COLLECTION>false</COLLECTION>
+            <URL>p17.jpg</URL>
         </GROUPXUEWEI>
     </GROUPXUEWEILIST>
 </GROUPROOT>
