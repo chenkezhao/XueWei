@@ -28,42 +28,48 @@ android {
          * http://open.qq.com/
          */
         QQ{
-            manifestPlaceholders=[umeng_channel:"QQ",youmi_channel:"QQ"]
+            applicationId "com.xuewei.qq"
+            manifestPlaceholders=[app_name:"高清图解.穴位",icon:"@mipmap/logo",umeng_channel:"umeng_channel_qq",youmi_channel:"youmi_channel_qq",authorities:"com.xuewei.qq.fileProvider"]
         }
         /**
          * 360手机助手
          * http://dev.360.cn/
          */
         S360{
-            manifestPlaceholders=[umeng_channel:"s360",youmi_channel:"s360"]
+            applicationId "com.xuewei.s360"
+            manifestPlaceholders=[app_name:"高清图解.穴位",icon:"@mipmap/logo",umeng_channel:"umeng_channel_360",youmi_channel:"youmi_channel_360",authorities:"com.xuewei.360.fileProvider"]
         }
         /**
          * 小米应用商店开发者平台
          * http://dev.xiaomi.com/console/
          */
         XIAOMI{
-            manifestPlaceholders=[umeng_channel:"xiaomi",youmi_channel:"xiaomi"]
+            applicationId "com.xuewei.xiaomi"
+            manifestPlaceholders=[app_name:"高清图解.穴位",icon:"@mipmap/logo",umeng_channel:"umeng_channel_xiaomi",youmi_channel:"youmi_channel_xiaomi",authorities:"com.xuewei.xiaomi.fileProvider"]
         }
         /**
          * 百度-百度手机助手
          * http://app.baidu.com/serve/
          */
         BAIDU_ZHUSHO{
-            manifestPlaceholders=[umeng_channel:"baidu-zhusho",youmi_channel:"baidu-zhusho"]
+            applicationId "com.xuewei.baiduzs"
+            manifestPlaceholders=[app_name:"高清图解.穴位",icon:"@mipmap/logo",umeng_channel:"umeng_channel_baiduzs",youmi_channel:"youmi_channel_baiduzs",authorities:"com.xuewei.baiduzs.fileProvider"]
         }
         /**
          * 百度-91市场
          * http://app.baidu.com/serve/
          */
         BAIDU_91{
-            manifestPlaceholders=[umeng_channel:"baidu-91",youmi_channel:"baidu-91"]
+            applicationId "com.xuewei.baidu91"
+            manifestPlaceholders=[app_name:"高清图解.穴位",icon:"@mipmap/logo",umeng_channel:"umeng_channel_baidu91",youmi_channel:"youmi_channel_baidu91",authorities:"com.xuewei.baidu91.fileProvider"]
         }
         /**
          * 百度-android市场
          * http://app.baidu.com/serve/
          */
         BAIDU_ANDROID{
-            manifestPlaceholders=[umeng_channel:"baidu-android",youmi_channel:"baidu-android"]
+            applicationId "com.xuewei.baiduandroid"
+            manifestPlaceholders=[app_name:"高清图解.穴位",icon:"@mipmap/logo",umeng_channel:"umeng_channel_baiduandroid",youmi_channel:"youmi_channel_baiduandroid",authorities:"com.xuewei.baiduandroid.fileProvider"]
         }
    }
 
