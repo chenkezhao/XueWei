@@ -89,7 +89,7 @@ public class SplashActivity extends BaseActivity {
 	 */
 	private void runApp() {
 		// 初始化SDK
-		AdManager.getInstance(mContext).init(Constant.YOUMI_APPID, Constant.YOUMI_APPSECRET, true, true);
+		AdManager.getInstance(mContext).init(Constant.YOUMI_APPID, Constant.YOUMI_APPSECRET, false,false);
 		// 设置开屏
 		setupSplashAd();
 	}

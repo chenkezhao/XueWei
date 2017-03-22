@@ -14,25 +14,15 @@
     <application
         android:name=".XWApplication"
         android:allowBackup="true"
-        android:icon="${icon}"
-        android:label="${app_name}"
-        android:roundIcon="${icon}"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--${icon}，${app_name} 引用 manifestPlaceholders 容器中 icon ， app_name 的值。-->
-        <meta-data
-            android:name="app_name"
-            android:value="${app_name}"/>
-        <meta-data
-            android:name="icon"
-            android:value="${icon}"/>
         <meta-data
             android:name="youmi_channel"
             android:value="${youmi_channel}"/>
-        <meta-data
-            android:name="authorities"
-            android:value="${authorities}"/>
 
         <meta-data
             android:name="design_width"
@@ -85,7 +75,7 @@
         <!-- 请务必修改 android:authorities 为贵应用的标识，一般为 包名.fileProvider -->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="${authorities}"
+            android:authorities="com.xuewei.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
