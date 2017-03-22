@@ -3,6 +3,10 @@ package com.xuewei.db;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import com.xuewei.XWApplication;
+import com.xuewei.db.dao.GroupXueWeiDao;
+import com.xuewei.db.dao.XueWeiEffectDao;
+import com.xuewei.entity.GroupXueWei;
+
 import org.xutils.DbManager;
 import org.xutils.x;
 import java.io.File;
@@ -38,7 +42,7 @@ public class MyDatabase {
             daoConfig = new DbManager.DaoConfig()
                     .setDbName(dbName)  // db名称
                     //.setDbDir(new File(dbDir))  //  db存储路径， //设置数据库路径，默认存储在app的私有目录
-                    .setDbVersion(1)    // db版本号
+                    .setDbVersion(2)    // db版本号
                     .setAllowTransaction(true)  // 允许db使用事务
                     .setDbUpgradeListener(new MyDbUpgradeListener())    // db升级监听
                     .setDbOpenListener(new DbManager.DbOpenListener() {
@@ -94,9 +98,10 @@ public class MyDatabase {
             for (int i = oldVersion; i < newVersion; i++) {
                 try {
                     switch (i) {
-//                        case 1:   TODO 当需要升级数据库结构时在这里加入升级逻辑
-//                            updateToVersion2(db);
-//                            break;
+                        case 1:   //TODO 当需要升级数据库结构时在这里加入升级逻辑
+                            String droptable = "drop table "+ GroupXueWei.TABLE_ALIAS+";drop table "+ GroupXueWei.TABLE_ALIAS;
+                            db.execNonQuery(droptable);
+                            break;
                         default:
                             break;
                     }

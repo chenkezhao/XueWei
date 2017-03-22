@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:actualImageScaleType="fitCenter"
-        app:failureImage="@color/colorAccent" />
+        app:failureImage="@drawable/ic_not_img"
+        app:failureImageScaleType="centerInside" />
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"

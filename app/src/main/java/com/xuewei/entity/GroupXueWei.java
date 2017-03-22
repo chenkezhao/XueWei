@@ -19,6 +19,7 @@ public class GroupXueWei extends BaseEntity {
 
 
 	public static final String  GROUPXUEWEI = "GROUPXUEWEI";
+	public static final String  TABLE_ALIAS = "GroupXueWei";
 
 	@XStreamAlias("SEQ")
 	@Column(name = "seq")
