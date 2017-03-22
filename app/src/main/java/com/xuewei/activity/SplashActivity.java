@@ -14,11 +14,11 @@ import com.xuewei.utils.Constant;
 import com.xuewei.utils.MessageUtils;
 import com.xuewei.utils.PermissionHelper;
 
-import net.youmi.android.AdManager;
-import net.youmi.android.normal.common.ErrorCode;
-import net.youmi.android.normal.spot.SplashViewSettings;
-import net.youmi.android.normal.spot.SpotListener;
-import net.youmi.android.normal.spot.SpotManager;
+import sw.ls.ps.AdManager;
+import sw.ls.ps.normal.common.ErrorCode;
+import sw.ls.ps.normal.spot.SplashViewSettings;
+import sw.ls.ps.normal.spot.SpotListener;
+import sw.ls.ps.normal.spot.SpotManager;
 
 /**
  * <p>
@@ -81,15 +81,15 @@ public class SplashActivity extends BaseActivity {
 
 	/**
 	 * 跑应用的逻辑
-     * appId 和 appSecret 分别为应用的发布 ID 和密钥，由有米后台自动生成，通过在有米后台 > 应用详细信息 可以获得。
-     * isTestModel : 是否开启测试模式，true 为是，false 为否。（上传有米审核及发布到市场版本，请设置为 false）
-     * isEnableYoumiLog: 是否开启有米的Log输出，默认为开启状态
-     *          上传到有米主站进行审核时，务必开启有米的Log，这样才能保证通过审核
-     *          开发者发布apk到各大市场的时候，强烈建议关闭有米的Log
 	 */
 	private void runApp() {
 		// 初始化SDK
-		AdManager.getInstance(mContext).init(Constant.YOUMI_APPID, Constant.YOUMI_APPSECRET, false,false);
+//		appId 和 appSecret 分别为应用的发布 ID 和密钥，由有米后台自动生成，通过在有米后台 > 应用详细信息 可以获得。
+//		isEnableYoumiLog: 是否开启有米的Log输出，默认为开启状态
+//		上传到有米主站进行审核时，务必开启有米的Log，这样才能保证通过审核
+//		审核通过后如需请求测试广告，请到 有米后台-应用中心-广告设置-测试设备设置 进行设置
+//		开发者发布apk到各大市场的时候，强烈建议关闭有米的Log
+		AdManager.getInstance(mContext).init(Constant.YM_APPID, Constant.YM_APPSECRET, false);
 		// 设置开屏
 		setupSplashAd();
 	}
@@ -101,7 +101,7 @@ public class SplashActivity extends BaseActivity {
 		// 创建开屏容器
 		final RelativeLayout splashLayout = (RelativeLayout) findViewById(R.id.rl_splash);
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-		params.addRule(RelativeLayout.ABOVE, R.id.view_divider);
+		//params.addRule(RelativeLayout.ABOVE, R.id.view_divider);
 
 		// 对开屏进行设置
 		SplashViewSettings splashViewSettings = new SplashViewSettings();
@@ -117,43 +117,43 @@ public class SplashActivity extends BaseActivity {
 
 			@Override
 			public void onShowSuccess() {
-				//MessageUtils.getInstance().logInfo("开屏展示成功");
+				MessageUtils.getInstance().logInfo("开屏展示成功");
 			}
 
 			@Override
 			public void onShowFailed(int errorCode) {
-				//MessageUtils.getInstance().logError("开屏展示失败");
+				MessageUtils.getInstance().logError("开屏展示失败");
 				switch (errorCode) {
 					case ErrorCode.NON_NETWORK:
-						//MessageUtils.getInstance().logError("网络异常");
+						MessageUtils.getInstance().logError("网络异常");
 						break;
 					case ErrorCode.NON_AD:
-						//MessageUtils.getInstance().logError("暂无开屏广告");
+						MessageUtils.getInstance().logError("暂无开屏广告");
 						break;
 					case ErrorCode.RESOURCE_NOT_READY:
-						//MessageUtils.getInstance().logError("开屏资源还没准备好");
+						MessageUtils.getInstance().logError("开屏资源还没准备好");
 						break;
 					case ErrorCode.SHOW_INTERVAL_LIMITED:
-						//MessageUtils.getInstance().logError("开屏展示间隔限制");
+						MessageUtils.getInstance().logError("开屏展示间隔限制");
 						break;
 					case ErrorCode.WIDGET_NOT_IN_VISIBILITY_STATE:
-						//MessageUtils.getInstance().logError("开屏控件处在不可见状态");
+						MessageUtils.getInstance().logError("开屏控件处在不可见状态");
 						break;
 					default:
-						//MessageUtils.getInstance().logError("errorCode: %d", errorCode);
+						MessageUtils.getInstance().logError("errorCode: %d", errorCode);
 						break;
 				}
 			}
 
 			@Override
 			public void onSpotClosed() {
-				//MessageUtils.getInstance().logDebug("开屏被关闭");
+				MessageUtils.getInstance().logDebug("开屏被关闭");
 			}
 
 			@Override
 			public void onSpotClicked(boolean isWebPage) {
-				//MessageUtils.getInstance().logDebug("开屏被点击");
-				//MessageUtils.getInstance().logInfo("是否是网页广告？%s", isWebPage ? "是" : "不是");
+				MessageUtils.getInstance().logDebug("开屏被点击");
+				MessageUtils.getInstance().logInfo("是否是网页广告？%s", isWebPage ? "是" : "不是");
 			}
 		});
 	}

@@ -3,9 +3,6 @@ package com.xuewei.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -24,20 +20,11 @@ import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.xuewei.R;
-import com.xuewei.XWApplication;
 import com.xuewei.activity.XWEffectActivity;
 import com.xuewei.db.dao.GroupXueWeiDao;
 import com.xuewei.entity.GroupXueWei;
-import com.xuewei.utils.CommonUtils;
-import com.xuewei.utils.MessageUtils;
 import com.xuewei.utils.SVGUtils;
 import com.xuewei.utils.SharedPreferencesUtils;
-
-import net.youmi.android.normal.common.ErrorCode;
-import net.youmi.android.normal.video.VideoAdListener;
-import net.youmi.android.normal.video.VideoAdManager;
-import net.youmi.android.normal.video.VideoAdSettings;
-import net.youmi.android.normal.video.VideoInfoViewBuilder;
 
 import java.util.List;
 
@@ -164,7 +151,7 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 		} else if (holder instanceof ViewHolder2) {
 			//广告视频
 			ViewHolder2 holder2 = ((ViewHolder2)holder);
-			holder2.setupNativeVideoAd();
+			//holder2.setupNativeVideoAd();
 		} else if(holder instanceof ViewHolder3){
 			ViewHolder3 holder3 = ((ViewHolder3)holder);
 			groupXueWei = mGroupXueWeiList.get(position);
@@ -233,189 +220,190 @@ public class MainRVListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 	 */
 	static class ViewHolder2 extends RecyclerView.ViewHolder {
 
-		/**
-		 * 原生视频广告控件容器
-		 */
-		private RelativeLayout mNativeVideoAdLayout;
-
-		/**
-		 * 视频信息栏容器
-		 */
-		private RelativeLayout mVideoInfoLayout;
-		private TextView loading;
-		private Context mContext;
-		private VideoAdSettings videoAdSettings;
-		private VideoInfoViewBuilder videoInfoViewBuilder;
-
-		public ViewHolder2(View view) {
-			super(view);
-			mContext = XWApplication.getInstance();
-			// 原生视频广告控件容器
-			mNativeVideoAdLayout = (RelativeLayout) view.findViewById(R.id.rl_native_video_ad);
-			// 视频信息栏容器
-			mVideoInfoLayout = (RelativeLayout) view.findViewById(R.id.rl_video_info);
-			loading = (TextView) view.findViewById(R.id.tv_adVideo_loading);
-			// 设置视频广告
-			videoAdSettings = new VideoAdSettings();
-
-			//		// 只需要调用一次，由于在主页窗口中已经调用了一次，所以此处无需调用
-			//		VideoAdManager.getInstance().requestVideoAd(mContext);
-
-			// 设置信息流视图，将图标，标题，描述，下载按钮对应的ID传入
-			videoInfoViewBuilder =
-					VideoAdManager.getInstance(mContext).getVideoInfoViewBuilder(mContext)
-							.setRootContainer(mVideoInfoLayout).bindAppIconView(R.id.info_iv_icon)
-							.bindAppNameView(R.id.info_tv_title).bindAppDescriptionView(R.id.info_tv_description)
-							.bindDownloadButton(R.id.info_btn_download);
-
-
-
-		}
-
-		/**
-		 * 设置原生视频广告
-		 */
-		private void setupNativeVideoAd() {
-			// 获取原生视频控件
-			View nativeVideoAdView = VideoAdManager.getInstance(mContext)
-					.getNativeVideoAdView(mContext, videoAdSettings, new VideoAdListener() {
-						@Override
-						public void onPlayStarted() {
-							loading.setVisibility(View.GONE);
-							// 由于多窗口模式下，屏幕较小，所以开始播放时先隐藏展示按钮
-							if (Build.VERSION.SDK_INT >= 24) {
-//								if (isInMultiWindowMode()) {
-//									hideShowNativeVideoButton();
-//								}
-							}
-							// 展示视频信息流视图
-							showVideoInfoLayout();
-						}
-
-						@Override
-						public void onPlayInterrupted() {
-							loading.setText("play pause...");
-							loading.setVisibility(View.VISIBLE);
-							// 隐藏视频信息流视图
-							hideVideoInfoLayout();
-							// 释放资源
-							if (videoInfoViewBuilder != null) {
-								videoInfoViewBuilder.release();
-							}
-							// 移除原生视频控件
-							if (mNativeVideoAdLayout != null) {
-								mNativeVideoAdLayout.removeAllViews();
-								mNativeVideoAdLayout.setVisibility(View.GONE);
-							}
-						}
-
-						@Override
-						public void onPlayFailed(int errorCode) {
-							loading.setText("play failed..."+errorCode);
-							loading.setVisibility(View.VISIBLE);
-							switch (errorCode) {
-								case ErrorCode.NON_NETWORK:
-									MessageUtils.getInstance().showShortToast("网络异常");
-									break;
-								case ErrorCode.NON_AD:
-//									MessageUtils.getInstance().showShortToast("原生视频暂无广告");
-									break;
-								case ErrorCode.RESOURCE_NOT_READY:
-//									MessageUtils.getInstance().showShortToast("原生视频资源还没准备好");
-									break;
-								case ErrorCode.SHOW_INTERVAL_LIMITED:
-//									MessageUtils.getInstance().showShortToast("请勿频繁展示");
-									break;
-								case ErrorCode.WIDGET_NOT_IN_VISIBILITY_STATE:
-//									MessageUtils.getInstance().showShortToast("原生视频控件处在不可见状态");
-									break;
-								default:
-//									MessageUtils.getInstance().logError("请稍后再试");
-									break;
-							}
-
-
-							// 隐藏视频信息流视图
-							hideVideoInfoLayout();
-							// 释放资源
-							if (videoInfoViewBuilder != null) {
-								videoInfoViewBuilder.release();
-							}
-							// 移除原生视频控件
-							if (mNativeVideoAdLayout != null) {
-								mNativeVideoAdLayout.removeAllViews();
-								mNativeVideoAdLayout.setVisibility(View.GONE);
-							}
-						}
-
-						@Override
-						public void onPlayCompleted() {
-							// 隐藏视频信息流视图
-							hideVideoInfoLayout();
-							// 释放资源
-							if (videoInfoViewBuilder != null) {
-								videoInfoViewBuilder.release();
-							}
-							// 移除原生视频控件
-							if (mNativeVideoAdLayout != null) {
-								mNativeVideoAdLayout.removeAllViews();
-								mNativeVideoAdLayout.setVisibility(View.GONE);
-							}
-						}
-
-					});
-			if (mNativeVideoAdLayout != null) {
-				final RelativeLayout.LayoutParams params =
-						new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-								ViewGroup.LayoutParams.WRAP_CONTENT);
-				if (nativeVideoAdView != null) {
-					mNativeVideoAdLayout.removeAllViews();
-					// 添加原生视频广告
-					mNativeVideoAdLayout.addView(nativeVideoAdView, params);
-					mNativeVideoAdLayout.setVisibility(View.VISIBLE);
-				}
-			}
-		}
-
-		/**
-		 * 展示视频信息流视图
-		 */
-		private void showVideoInfoLayout() {
-			if (mVideoInfoLayout != null && mVideoInfoLayout.getVisibility() != View.VISIBLE) {
-				mVideoInfoLayout.setVisibility(View.VISIBLE);
-			}
-		}
-
-		/**
-		 * 隐藏视频信息流视图
-		 */
-		private void hideVideoInfoLayout() {
-			if (mVideoInfoLayout != null && mVideoInfoLayout.getVisibility() != View.GONE) {
-				mVideoInfoLayout.setVisibility(View.GONE);
-			}
-		}
-
-
-		class VideoAsyncTask extends AsyncTask<String,Integer,String>{
-
-			@Override
-			protected void onPreExecute() {
-				super.onPreExecute();
-				loading.setText("Loading...");
-				loading.setVisibility(View.VISIBLE);
-			}
-
-			@Override
-			protected String doInBackground(String... params) {
-				setupNativeVideoAd();
-				return null;
-			}
-
-			@Override
-			protected void onPostExecute(String s) {
-				super.onPostExecute(s);
-			}
-		}
+		public ViewHolder2(View view) {super(view);}
+//		/**
+//		 * 原生视频广告控件容器
+//		 */
+//		private RelativeLayout mNativeVideoAdLayout;
+//
+//		/**
+//		 * 视频信息栏容器
+//		 */
+//		private RelativeLayout mVideoInfoLayout;
+//		private TextView loading;
+//		private Context mContext;
+//		private VideoAdSettings videoAdSettings;
+//		private VideoInfoViewBuilder videoInfoViewBuilder;
+//
+//		public ViewHolder2(View view) {
+//			super(view);
+//			mContext = XWApplication.getInstance();
+//			// 原生视频广告控件容器
+//			mNativeVideoAdLayout = (RelativeLayout) view.findViewById(R.id.rl_native_video_ad);
+//			// 视频信息栏容器
+//			mVideoInfoLayout = (RelativeLayout) view.findViewById(R.id.rl_video_info);
+//			loading = (TextView) view.findViewById(R.id.tv_adVideo_loading);
+//			// 设置视频广告
+//			videoAdSettings = new VideoAdSettings();
+//
+//			//		// 只需要调用一次，由于在主页窗口中已经调用了一次，所以此处无需调用
+//			//		VideoAdManager.getInstance().requestVideoAd(mContext);
+//
+//			// 设置信息流视图，将图标，标题，描述，下载按钮对应的ID传入
+//			videoInfoViewBuilder =
+//					VideoAdManager.getInstance(mContext).getVideoInfoViewBuilder(mContext)
+//							.setRootContainer(mVideoInfoLayout).bindAppIconView(R.id.info_iv_icon)
+//							.bindAppNameView(R.id.info_tv_title).bindAppDescriptionView(R.id.info_tv_description)
+//							.bindDownloadButton(R.id.info_btn_download);
+//
+//
+//
+//		}
+//
+//		/**
+//		 * 设置原生视频广告
+//		 */
+//		private void setupNativeVideoAd() {
+//			// 获取原生视频控件
+//			View nativeVideoAdView = VideoAdManager.getInstance(mContext)
+//					.getNativeVideoAdView(mContext, videoAdSettings, new VideoAdListener() {
+//						@Override
+//						public void onPlayStarted() {
+//							loading.setVisibility(View.GONE);
+//							// 由于多窗口模式下，屏幕较小，所以开始播放时先隐藏展示按钮
+//							if (Build.VERSION.SDK_INT >= 24) {
+////								if (isInMultiWindowMode()) {
+////									hideShowNativeVideoButton();
+////								}
+//							}
+//							// 展示视频信息流视图
+//							showVideoInfoLayout();
+//						}
+//
+//						@Override
+//						public void onPlayInterrupted() {
+//							loading.setText("play pause...");
+//							loading.setVisibility(View.VISIBLE);
+//							// 隐藏视频信息流视图
+//							hideVideoInfoLayout();
+//							// 释放资源
+//							if (videoInfoViewBuilder != null) {
+//								videoInfoViewBuilder.release();
+//							}
+//							// 移除原生视频控件
+//							if (mNativeVideoAdLayout != null) {
+//								mNativeVideoAdLayout.removeAllViews();
+//								mNativeVideoAdLayout.setVisibility(View.GONE);
+//							}
+//						}
+//
+//						@Override
+//						public void onPlayFailed(int errorCode) {
+//							loading.setText("play failed..."+errorCode);
+//							loading.setVisibility(View.VISIBLE);
+//							switch (errorCode) {
+//								case ErrorCode.NON_NETWORK:
+//									MessageUtils.getInstance().showShortToast("网络异常");
+//									break;
+//								case ErrorCode.NON_AD:
+////									MessageUtils.getInstance().showShortToast("原生视频暂无广告");
+//									break;
+//								case ErrorCode.RESOURCE_NOT_READY:
+////									MessageUtils.getInstance().showShortToast("原生视频资源还没准备好");
+//									break;
+//								case ErrorCode.SHOW_INTERVAL_LIMITED:
+////									MessageUtils.getInstance().showShortToast("请勿频繁展示");
+//									break;
+//								case ErrorCode.WIDGET_NOT_IN_VISIBILITY_STATE:
+////									MessageUtils.getInstance().showShortToast("原生视频控件处在不可见状态");
+//									break;
+//								default:
+////									MessageUtils.getInstance().logError("请稍后再试");
+//									break;
+//							}
+//
+//
+//							// 隐藏视频信息流视图
+//							hideVideoInfoLayout();
+//							// 释放资源
+//							if (videoInfoViewBuilder != null) {
+//								videoInfoViewBuilder.release();
+//							}
+//							// 移除原生视频控件
+//							if (mNativeVideoAdLayout != null) {
+//								mNativeVideoAdLayout.removeAllViews();
+//								mNativeVideoAdLayout.setVisibility(View.GONE);
+//							}
+//						}
+//
+//						@Override
+//						public void onPlayCompleted() {
+//							// 隐藏视频信息流视图
+//							hideVideoInfoLayout();
+//							// 释放资源
+//							if (videoInfoViewBuilder != null) {
+//								videoInfoViewBuilder.release();
+//							}
+//							// 移除原生视频控件
+//							if (mNativeVideoAdLayout != null) {
+//								mNativeVideoAdLayout.removeAllViews();
+//								mNativeVideoAdLayout.setVisibility(View.GONE);
+//							}
+//						}
+//
+//					});
+//			if (mNativeVideoAdLayout != null) {
+//				final RelativeLayout.LayoutParams params =
+//						new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+//								ViewGroup.LayoutParams.WRAP_CONTENT);
+//				if (nativeVideoAdView != null) {
+//					mNativeVideoAdLayout.removeAllViews();
+//					// 添加原生视频广告
+//					mNativeVideoAdLayout.addView(nativeVideoAdView, params);
+//					mNativeVideoAdLayout.setVisibility(View.VISIBLE);
+//				}
+//			}
+//		}
+//
+//		/**
+//		 * 展示视频信息流视图
+//		 */
+//		private void showVideoInfoLayout() {
+//			if (mVideoInfoLayout != null && mVideoInfoLayout.getVisibility() != View.VISIBLE) {
+//				mVideoInfoLayout.setVisibility(View.VISIBLE);
+//			}
+//		}
+//
+//		/**
+//		 * 隐藏视频信息流视图
+//		 */
+//		private void hideVideoInfoLayout() {
+//			if (mVideoInfoLayout != null && mVideoInfoLayout.getVisibility() != View.GONE) {
+//				mVideoInfoLayout.setVisibility(View.GONE);
+//			}
+//		}
+//
+//
+//		class VideoAsyncTask extends AsyncTask<String,Integer,String>{
+//
+//			@Override
+//			protected void onPreExecute() {
+//				super.onPreExecute();
+//				loading.setText("Loading...");
+//				loading.setVisibility(View.VISIBLE);
+//			}
+//
+//			@Override
+//			protected String doInBackground(String... params) {
+//				setupNativeVideoAd();
+//				return null;
+//			}
+//
+//			@Override
+//			protected void onPostExecute(String s) {
+//				super.onPostExecute(s);
+//			}
+//		}
 
 	}
 

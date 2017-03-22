@@ -1,5 +1,13 @@
 package com.xuewei;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Build;
+import android.util.Log;
+
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -10,16 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.os.Build;
-import android.util.Log;
-import android.widget.Toast;
-
-import net.youmi.android.normal.spot.SpotManager;
-import net.youmi.android.normal.video.VideoAdManager;
+import sw.ls.ps.normal.spot.SpotManager;
 
 
 /**
@@ -97,13 +96,8 @@ public class AppErrorHandler implements UncaughtExceptionHandler {
 				}
 				Log.e(TAG,errorMessage);
 
-
-				// 退出应用时调用，用于释放资源
-				// 如果无法保证应用主界面的 onDestroy() 方法被执行到，请移动以下接口到应用的退出逻辑里面调用
 				// 插屏广告（包括普通插屏广告、轮播插屏广告、原生插屏广告）
 				SpotManager.getInstance(mContext).onAppExit();
-				// 视频广告（包括普通视频广告、原生视频广告）
-				//VideoAdManager.getInstance(mContext).onAppExit();
 				android.os.Process.killProcess(android.os.Process.myPid());
 				System.exit(1);
 			} catch (Exception e) {

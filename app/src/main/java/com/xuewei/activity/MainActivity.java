@@ -24,7 +24,6 @@ import android.widget.Toast;
 import com.xuewei.R;
 import com.xuewei.adapter.DividerItemDecoration;
 import com.xuewei.adapter.MainRVListAdapter;
-import com.xuewei.db.MyDatabase;
 import com.xuewei.db.dao.GroupXueWeiDao;
 import com.xuewei.db.dao.XueWeiEffectDao;
 import com.xuewei.entity.GroupXueWei;
@@ -33,17 +32,15 @@ import com.xuewei.utils.MessageUtils;
 import com.xuewei.utils.SharedPreferencesUtils;
 import com.xuewei.utils.XmlReadUtils;
 
-import net.youmi.android.normal.banner.BannerManager;
-import net.youmi.android.normal.common.ErrorCode;
-import net.youmi.android.normal.spot.SpotListener;
-import net.youmi.android.normal.spot.SpotManager;
-import net.youmi.android.normal.video.VideoAdManager;
-
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import sw.ls.ps.normal.common.ErrorCode;
+import sw.ls.ps.normal.spot.SpotListener;
+import sw.ls.ps.normal.spot.SpotManager;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -71,22 +68,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// 广告
-		// 预加载数据
-		preloadData();
-		// checkAdSettings();
-		// 设置轮播插屏广告
-		try{
-			new Handler().postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					setupSlideableSpotAd();
-				}
-			},5000);
-		}catch (Exception e){
-			//MessageUtils.getInstance().showLongToast(e.toString());
-		}
-
 		setSupportActionBar(mToolbar);
 		mToolbar.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -102,19 +83,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
-				switch (item.getItemId()){
+				switch (item.getItemId()) {
 					case R.id.menu_search:
 						break;
 					case R.id.menu_layout:
 						int viewType = SharedPreferencesUtils.getListViewType(MainActivity.this);
-						SharedPreferencesUtils.setListViewType(MainActivity.this,viewType==0?"2":"0");
-						if(mGroupXueWeiList!=null){
+						SharedPreferencesUtils.setListViewType(MainActivity.this, viewType == 0 ? "2" : "0");
+						if (mGroupXueWeiList != null) {
 							mainRVListAdapter = new MainRVListAdapter(MainActivity.this, mGroupXueWeiList);
 							mRecyclerView.setAdapter(mainRVListAdapter);
-							if(SharedPreferencesUtils.getListViewType(MainActivity.this)==0){
-								mRecyclerView.removeItemDecoration(new DividerItemDecoration(MainActivity.this,DividerItemDecoration.VERTICAL_LIST));
-							}else{
-								mRecyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,DividerItemDecoration.VERTICAL_LIST));
+							if (SharedPreferencesUtils.getListViewType(MainActivity.this) == 0) {
+								mRecyclerView.removeItemDecoration(new DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL_LIST));
+							} else {
+								mRecyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL_LIST));
 							}
 						}
 						break;
@@ -137,6 +118,22 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		// 设置轮播插屏广告
+		try {
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					setupSlideableSpotAd();
+				}
+			}, 5000);
+		} catch (Exception e) {
+			// MessageUtils.getInstance().showLongToast(e.toString());
+		}
+	}
+
 	private void initView() {
 		about.setText(Html.fromHtml("<div style=\"padding: 24px;color: #FFFFFF\">\n" + "Copyright © &nbsp;2017&nbsp;陈科肇 All rights reserved.<br>\n" + "联系方式：<font class=\"email\">310771881@qq.com</font>\n" + "</div>"));
 		// 初始化appBarLayout
@@ -157,10 +154,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		ctlToolbar.setExpandedTitleColor(getResources().getColor(R.color.colorAccent));// 设置还没收缩时状态下字体颜色
 		ctlToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.colorTextInPrimaryDark));// 设置收缩后Toolbar上字体的颜色
 
-		if(SharedPreferencesUtils.getListViewType(MainActivity.this)==0){
-			mRecyclerView.removeItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
-		}else{
-			mRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
+		if (SharedPreferencesUtils.getListViewType(MainActivity.this) == 0) {
+			mRecyclerView.removeItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+		} else {
+			mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 		}
 
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -228,22 +225,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	@Override
-	public void onBackPressed() {
-		if (navDrawer.isDrawerOpen(GravityCompat.START)) {
-			navDrawer.closeDrawer(GravityCompat.START);
-		} else {
-			super.onBackPressed();
-		}
-
-		// 点击后退关闭轮播插屏广告
-		if (SpotManager.getInstance(mContext).isSlideableSpotShowing()) {
-			SpotManager.getInstance(mContext).hideSlideableSpot();
-		} else {
-			super.onBackPressed();
-		}
-	}
-
 	@SuppressWarnings("StatementWithEmptyBody")
 	@Override
 	public boolean onNavigationItemSelected(MenuItem item) {
@@ -272,70 +253,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		return true;
 	}
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		//MyDatabase.getInstance().closeDatabase();
-		// 展示广告条窗口的 onDestroy() 回调方法中调用
-		//BannerManager.getInstance(mContext).onDestroy();
-		// 轮播插屏广告
-		SpotManager.getInstance(mContext).onDestroy();
-
-		// 退出应用时调用，用于释放资源
-		// 如果无法保证应用主界面的 onDestroy() 方法被执行到，请移动以下接口到应用的退出逻辑里面调用
-
-		// 插屏广告（包括普通插屏广告、轮播插屏广告、原生插屏广告）
-		SpotManager.getInstance(mContext).onAppExit();
-		// 视频广告（包括普通视频广告、原生视频广告）
-		//VideoAdManager.getInstance(mContext).onAppExit();
-	}
-
-	// -----------------------必须调用以下全部生命周期方法-------------------------------
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-		// 原生视频广告
-		//VideoAdManager.getInstance(mContext).onStart();
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		// 原生视频广告
-		//VideoAdManager.getInstance(mContext).onResume();
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		// 原生视频广告
-		//VideoAdManager.getInstance(mContext).onPause();
-		// 轮播插屏广告
-		SpotManager.getInstance(mContext).onPause();
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		// 原生视频广告
-		//VideoAdManager.getInstance(mContext).onStop();
-		// 轮播插屏广告
-		SpotManager.getInstance(mContext).onStop();
-	}
-
-	// -----------------------必须调用以上全部生命周期方法-------------------------------
-
-	/**
-	 * 预加载数据
-	 */
-	private void preloadData() {
-		// 设置服务器回调 userId，一定要在请求广告之前设置，否则无效
-		//VideoAdManager.getInstance(mContext).setUserId("xuewei689");
-		// 请求视频广告
-		//VideoAdManager.getInstance(mContext).requestVideoAd(mContext);
-	}
-
 	/**
 	 * 设置轮播插屏广告
 	 */
@@ -348,57 +265,98 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		SpotManager.getInstance(mContext).setImageType(SpotManager.IMAGE_TYPE_VERTICAL);
 
 		// 设置动画类型，默认高级动画
-		 // 无动画
-		 SpotManager.getInstance(mContext).setAnimationType(SpotManager .ANIMATION_TYPE_NONE);
+		// // 无动画
+		// SpotManager.getInstance(mContext).setAnimationType(SpotManager
+		// .ANIMATION_TYPE_NONE);
 		// // 简单动画
 		// SpotManager.getInstance(mContext).setAnimationType(SpotManager
 		// .ANIMATION_TYPE_SIMPLE);
 		// 高级动画
-//		SpotManager.getInstance(mContext).setAnimationType(SpotManager.ANIMATION_TYPE_ADVANCED);
+		SpotManager.getInstance(mContext).setAnimationType(SpotManager.ANIMATION_TYPE_ADVANCED);
 
 		// 展示轮播插屏广告
 		SpotManager.getInstance(mContext).showSlideableSpot(mContext, new SpotListener() {
 
 			@Override
 			public void onShowSuccess() {
-				//MessageUtils.getInstance().logInfo("轮播插屏展示成功");
+				MessageUtils.getInstance().logInfo("轮播插屏展示成功");
 			}
 
 			@Override
 			public void onShowFailed(int errorCode) {
-				//MessageUtils.getInstance().logError("轮播插屏展示失败");
+				MessageUtils.getInstance().logError("轮播插屏展示失败");
 				switch (errorCode) {
 					case ErrorCode.NON_NETWORK:
-						//MessageUtils.getInstance().showShortToast("网络异常");
+						MessageUtils.getInstance().showShortToast("网络异常");
 						break;
 					case ErrorCode.NON_AD:
-						//MessageUtils.getInstance().showShortToast("暂无轮播插屏广告");
+						MessageUtils.getInstance().showShortToast("暂无轮播插屏广告");
 						break;
 					case ErrorCode.RESOURCE_NOT_READY:
-						//MessageUtils.getInstance().showShortToast("轮播插屏资源还没准备好");
+						MessageUtils.getInstance().showShortToast("轮播插屏资源还没准备好");
 						break;
 					case ErrorCode.SHOW_INTERVAL_LIMITED:
-						//MessageUtils.getInstance().showShortToast("请勿频繁展示");
+						MessageUtils.getInstance().showShortToast("请勿频繁展示");
 						break;
 					case ErrorCode.WIDGET_NOT_IN_VISIBILITY_STATE:
-						//MessageUtils.getInstance().showShortToast("请设置插屏为可见状态");
+						MessageUtils.getInstance().showShortToast("请设置插屏为可见状态");
 						break;
 					default:
-						//MessageUtils.getInstance().showShortToast("请稍后再试");
+						MessageUtils.getInstance().showShortToast("请稍后再试");
 						break;
 				}
 			}
 
 			@Override
 			public void onSpotClosed() {
-				//MessageUtils.getInstance().logDebug("轮播插屏被关闭");
+				MessageUtils.getInstance().logDebug("轮播插屏被关闭");
 			}
 
 			@Override
 			public void onSpotClicked(boolean isWebPage) {
-				//MessageUtils.getInstance().logDebug("轮播插屏被点击");
-				//MessageUtils.getInstance().logInfo("是否是网页广告？%s", isWebPage ? "是" : "不是");
+				MessageUtils.getInstance().logDebug("轮播插屏被点击");
+				MessageUtils.getInstance().logInfo("是否是网页广告？%s", isWebPage ? "是" : "不是");
 			}
 		});
 	}
+
+	@Override
+	public void onBackPressed() {
+		if (navDrawer.isDrawerOpen(GravityCompat.START)) {
+			navDrawer.closeDrawer(GravityCompat.START);
+		} else {
+			super.onBackPressed();
+		}
+		// 点击后退关闭轮播插屏广告
+		if (SpotManager.getInstance(mContext).isSlideableSpotShowing()) {
+			SpotManager.getInstance(mContext).hideSlideableSpot();
+		} else {
+			super.onBackPressed();
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		// 轮播插屏广告
+		SpotManager.getInstance(mContext).onPause();
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		// 轮播插屏广告
+		SpotManager.getInstance(mContext).onStop();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		// 轮播插屏广告
+		SpotManager.getInstance(mContext).onDestroy();
+
+		// 插屏广告（包括普通插屏广告、轮播插屏广告、原生插屏广告）
+		SpotManager.getInstance(mContext).onAppExit();
+	}
+
 }

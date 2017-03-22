@@ -28,42 +28,42 @@ android {
          * http://open.qq.com/
          */
         QQ{
-            manifestPlaceholders=[umeng_channel:"qq",youmi_channel:"qq"]
+            manifestPlaceholders=[umeng_channel:"qq"]
         }
         /**
          * 360手机助手
          * http://dev.360.cn/
          */
         S360{
-            manifestPlaceholders=[umeng_channel:"360",youmi_channel:"360"]
+            manifestPlaceholders=[umeng_channel:"360"]
         }
         /**
          * 小米应用商店开发者平台
          * http://dev.xiaomi.com/console/
          */
         XIAOMI{
-            manifestPlaceholders=[umeng_channel:"xiaomi",youmi_channel:"xiaomi"]
+            manifestPlaceholders=[umeng_channel:"xiaomi"]
         }
         /**
          * 百度-百度手机助手
          * http://app.baidu.com/serve/
          */
         BAIDU_ZHUSHO{
-            manifestPlaceholders=[umeng_channel:"baiduzs",youmi_channel:"baiduzs"]
+            manifestPlaceholders=[umeng_channel:"baiduzs"]
         }
         /**
          * 百度-91市场
          * http://app.baidu.com/serve/
          */
         BAIDU_91{
-            manifestPlaceholders=[umeng_channel:"baidu91",youmi_channel:"baidu91"]
+            manifestPlaceholders=[umeng_channel:"baidu91"]
         }
         /**
          * 百度-android市场
          * http://app.baidu.com/serve/
          */
         BAIDU_ANDROID{
-            manifestPlaceholders=[umeng_channel:"baiduandroid",youmi_channel:"baiduandroid"]
+            manifestPlaceholders=[umeng_channel:"baiduandroid"]
         }
     }
 

@@ -11,8 +11,6 @@ import android.widget.Toast;
 
 import com.xuewei.XWApplication;
 
-import net.youmi.android.normal.video.VideoAdManager;
-
 /**
  *
  * Created by Administrator on 2017/1/7.

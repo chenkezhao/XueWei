@@ -16,7 +16,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.xuewei.XWApplication;
 import com.xuewei.utils.MessageUtils;
 
-import net.youmi.android.normal.video.VideoAdManager;
+//import net.youmi.android.normal.video.VideoAdManager;
 
 import org.xutils.x;
 
@@ -128,8 +128,8 @@ public class BaseActivity extends AppCompatActivity/*BaseSkinActivity*/ {
      * 检查广告配置
      */
     public void checkAdSettings() {
-        boolean result = VideoAdManager.getInstance(mContext).checkVideoAdConfig();
-        MessageUtils.getInstance().showShortToast("配置 %s", result ? "正确" : "不正确，请对照文档检查是否存在遗漏");
+//        boolean result = VideoAdManager.getInstance(mContext).checkVideoAdConfig();
+//        MessageUtils.getInstance().showShortToast("配置 %s", result ? "正确" : "不正确，请对照文档检查是否存在遗漏");
     }
 
 }

@@ -9,13 +9,13 @@ public class Constant {
     /**
      * 有米发布id
      */
-    public static final String YOUMI_APPID= "b853baf23aa7fedb";
+    public static final String YM_APPID= "b853baf23aa7fedb";
     /**
      * 有米应用密钥
      */
-    public static final String YOUMI_APPSECRET= "36fd0efc50d1eafa";
+    public static final String YM_APPSECRET= "36fd0efc50d1eafa";
     /**
      * 有米用户id
      */
-    public static final String YOUMI_USERID= "ym_xuewei";
+    public static final String YM_USERID= "xuewei";
 }
