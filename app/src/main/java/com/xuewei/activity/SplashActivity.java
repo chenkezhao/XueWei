@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 
 import com.xuewei.R;
 import com.xuewei.utils.Constant;
-import com.xuewei.utils.MessageUtils;
 import com.xuewei.utils.PermissionHelper;
 
 import sw.ls.ps.AdManager;
@@ -117,43 +116,43 @@ public class SplashActivity extends BaseActivity {
 
 			@Override
 			public void onShowSuccess() {
-				MessageUtils.getInstance().logInfo("开屏展示成功");
+				//MessageUtils.getInstance().logInfo("开屏展示成功");
 			}
 
 			@Override
 			public void onShowFailed(int errorCode) {
-				MessageUtils.getInstance().logError("开屏展示失败");
+				//MessageUtils.getInstance().logError("开屏展示失败");
 				switch (errorCode) {
 					case ErrorCode.NON_NETWORK:
-						MessageUtils.getInstance().logError("网络异常");
+						//MessageUtils.getInstance().logError("网络异常");
 						break;
 					case ErrorCode.NON_AD:
-						MessageUtils.getInstance().logError("暂无开屏广告");
+						//MessageUtils.getInstance().logError("暂无开屏广告");
 						break;
 					case ErrorCode.RESOURCE_NOT_READY:
-						MessageUtils.getInstance().logError("开屏资源还没准备好");
+						//MessageUtils.getInstance().logError("开屏资源还没准备好");
 						break;
 					case ErrorCode.SHOW_INTERVAL_LIMITED:
-						MessageUtils.getInstance().logError("开屏展示间隔限制");
+						//MessageUtils.getInstance().logError("开屏展示间隔限制");
 						break;
 					case ErrorCode.WIDGET_NOT_IN_VISIBILITY_STATE:
-						MessageUtils.getInstance().logError("开屏控件处在不可见状态");
+						//MessageUtils.getInstance().logError("开屏控件处在不可见状态");
 						break;
 					default:
-						MessageUtils.getInstance().logError("errorCode: %d", errorCode);
+						//MessageUtils.getInstance().logError("errorCode: %d", errorCode);
 						break;
 				}
 			}
 
 			@Override
 			public void onSpotClosed() {
-				MessageUtils.getInstance().logDebug("开屏被关闭");
+				//MessageUtils.getInstance().logDebug("开屏被关闭");
 			}
 
 			@Override
 			public void onSpotClicked(boolean isWebPage) {
-				MessageUtils.getInstance().logDebug("开屏被点击");
-				MessageUtils.getInstance().logInfo("是否是网页广告？%s", isWebPage ? "是" : "不是");
+				//MessageUtils.getInstance().logDebug("开屏被点击");
+				//MessageUtils.getInstance().logInfo("是否是网页广告？%s", isWebPage ? "是" : "不是");
 			}
 		});
 	}

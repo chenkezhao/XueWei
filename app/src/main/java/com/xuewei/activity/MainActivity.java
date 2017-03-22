@@ -279,43 +279,43 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
 			@Override
 			public void onShowSuccess() {
-				MessageUtils.getInstance().logInfo("轮播插屏展示成功");
+				//MessageUtils.getInstance().logInfo("轮播插屏展示成功");
 			}
 
 			@Override
 			public void onShowFailed(int errorCode) {
-				MessageUtils.getInstance().logError("轮播插屏展示失败");
+				//MessageUtils.getInstance().logError("轮播插屏展示失败");
 				switch (errorCode) {
 					case ErrorCode.NON_NETWORK:
-						MessageUtils.getInstance().showShortToast("网络异常");
+						//MessageUtils.getInstance().showShortToast("网络异常");
 						break;
 					case ErrorCode.NON_AD:
-						MessageUtils.getInstance().showShortToast("暂无轮播插屏广告");
+						//MessageUtils.getInstance().showShortToast("暂无轮播插屏广告");
 						break;
 					case ErrorCode.RESOURCE_NOT_READY:
-						MessageUtils.getInstance().showShortToast("轮播插屏资源还没准备好");
+						//MessageUtils.getInstance().showShortToast("轮播插屏资源还没准备好");
 						break;
 					case ErrorCode.SHOW_INTERVAL_LIMITED:
-						MessageUtils.getInstance().showShortToast("请勿频繁展示");
+						//MessageUtils.getInstance().showShortToast("请勿频繁展示");
 						break;
 					case ErrorCode.WIDGET_NOT_IN_VISIBILITY_STATE:
-						MessageUtils.getInstance().showShortToast("请设置插屏为可见状态");
+						//MessageUtils.getInstance().showShortToast("请设置插屏为可见状态");
 						break;
 					default:
-						MessageUtils.getInstance().showShortToast("请稍后再试");
+						//MessageUtils.getInstance().showShortToast("请稍后再试");
 						break;
 				}
 			}
 
 			@Override
 			public void onSpotClosed() {
-				MessageUtils.getInstance().logDebug("轮播插屏被关闭");
+				//MessageUtils.getInstance().logDebug("轮播插屏被关闭");
 			}
 
 			@Override
 			public void onSpotClicked(boolean isWebPage) {
-				MessageUtils.getInstance().logDebug("轮播插屏被点击");
-				MessageUtils.getInstance().logInfo("是否是网页广告？%s", isWebPage ? "是" : "不是");
+				//MessageUtils.getInstance().logDebug("轮播插屏被点击");
+				//MessageUtils.getInstance().logInfo("是否是网页广告？%s", isWebPage ? "是" : "不是");
 			}
 		});
 	}
