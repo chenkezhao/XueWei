@@ -30,6 +30,7 @@ import com.xuewei.entity.GroupXueWei;
 import com.xuewei.entity.XueWeiEffect;
 import com.xuewei.utils.MessageUtils;
 import com.xuewei.utils.SharedPreferencesUtils;
+import com.xuewei.utils.StringUtils;
 import com.xuewei.utils.XmlReadUtils;
 
 import org.xutils.view.annotation.ContentView;
@@ -38,12 +39,15 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sw.ls.ps.AdManager;
 import sw.ls.ps.normal.common.ErrorCode;
 import sw.ls.ps.normal.spot.SpotListener;
 import sw.ls.ps.normal.spot.SpotManager;
+import sw.ls.ps.onlineconfig.OnlineConfigCallBack;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+
 
 	@ViewInject(R.id.drawer_layout)
 	private DrawerLayout			navDrawer;
@@ -65,9 +69,68 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	private List<GroupXueWei>		mGroupXueWeiList;
 	private MainRVListAdapter		mainRVListAdapter;
 
+
+	private void startAD(String defaultValue){
+		// 方法二： 异步调用（可在任意线程中调用）
+		AdManager.getInstance(this).asyncGetOnlineConfig("adShowType", new MyOnlineConfigCallBack(defaultValue));
+	}
+
+	class MyOnlineConfigCallBack implements OnlineConfigCallBack{
+
+		private String defaultValue;
+		public MyOnlineConfigCallBack(){
+			super();
+
+		}
+		public MyOnlineConfigCallBack(String defaultValue){
+			super();
+			this.defaultValue = defaultValue;
+		}
+		@Override
+		public void onGetOnlineConfigSuccessful(String key, String value) {
+			// TODO Auto-generated method stub
+			// 获取在线参数成功
+			if(StringUtils.isBlank(value)){
+				value = "onCreate";
+			}
+			if(defaultValue.equals(value)){
+				// 设置轮播插屏广告
+				try {
+					new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							setupSlideableSpotAd();
+						}
+					}, 5000);
+				} catch (Exception e) {
+					// MessageUtils.getInstance().showLongToast(e.toString());
+				}
+			}
+
+		}
+
+		@Override
+		public void onGetOnlineConfigFailed(String s) {
+			if(defaultValue.equals("onCreate")){
+				// 设置轮播插屏广告
+				try {
+					new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							setupSlideableSpotAd();
+						}
+					}, 5000);
+				} catch (Exception e) {
+					// MessageUtils.getInstance().showLongToast(e.toString());
+				}
+			}
+		}
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		startAD("onCreate");
 		setSupportActionBar(mToolbar);
 		mToolbar.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -119,19 +182,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	}
 
 	@Override
-	protected void onStart() {
-		super.onStart();
-		// 设置轮播插屏广告
-		try {
-			new Handler().postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					setupSlideableSpotAd();
-				}
-			}, 5000);
-		} catch (Exception e) {
-			// MessageUtils.getInstance().showLongToast(e.toString());
-		}
+	protected void onResume() {
+		super.onResume();
+		startAD("onResume");
 	}
 
 	private void initView() {
